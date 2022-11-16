@@ -1,0 +1,179 @@
+/* additional reset */
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* variables */
+:root {
+  --debug-red: rgba(255, 0, 0, .1);
+  --debug-green: rgba(0, 255, 0, .1);
+  --debug-blue: rgba(0, 0, 255, .1);
+  --gray: gray;
+  --lightgray: lightgray;
+  --darkgray: dimgray;
+  --white: white;
+}
+
+/* actual styles */
+html {
+  background-color: whitesmoke;
+}
+
+body {
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 90rem;
+}
+
+header {
+  align-items: center;
+  background-color: var(--white);
+  box-shadow: 0 .25rem 1rem var(--lightgray);
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem 4rem;
+}
+
+#logo {
+  margin: 0;
+  width: 5rem;
+}
+
+#search {
+  flex-grow: 1;
+}
+
+input[type="search"] {
+  background: url("../symbols/magnifying-glass-solid.svg") no-repeat 2rem center;
+  background-size: 2rem;
+  border: none;
+  border-left: .25rem solid var(--lightgray);
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin: 0;
+  padding: 1rem;
+  padding-left: 5.5rem;
+  width: 100%;
+}
+
+input[type="search"]::placeholder {
+  color: var(--lightgray);
+}
+
+main {
+  margin-top: 2rem;
+}
+
+#account {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+}
+
+.account-username {
+  color: --darkgray;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.account-avatar img {
+  border-radius: 50%;
+}
+
+.task-categories {
+  display: flex;
+  gap: 4rem;
+  justify-content: center;
+}
+
+.task-category {
+  max-width: 30rem;
+}
+
+.task-category-title {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.task-item {
+  background-color: var(--white);
+  padding: 2rem;
+}
+
+.task-title {
+  color: var(--darkgray);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.task-excerpt {
+  color: var(--gray);
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+
+.task-excerpt::after {
+  content: " ..";
+}
+
+.task-info {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-user {
+  background-color: red;
+  border-radius: 50%;
+  color: var(--white);
+  font-weight: 500;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  text-align: center;
+  width: 2.5rem;
+}
+
+.task-date {
+  font-size: 1.25rem;
+}
