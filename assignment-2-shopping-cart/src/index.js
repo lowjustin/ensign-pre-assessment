@@ -1,8 +1,8 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import Router from './components/Router';
+// import Router from './components/Router';
+import App from './components/App';
 // import "./css/style.css";
 
-const container = document.getElementById('root');
-const root = createRoot(container); // createRoot(container!) if you use TypeScript
-root.render(<Router />);
+const root = createRoot(document.getElementById("root"));
+root.render(<App />);
