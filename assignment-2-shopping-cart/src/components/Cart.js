@@ -12,7 +12,7 @@ export default function Cart(props) {
   let total = 0.0;
   if (loading === false) {
     total = Object.keys(cart).reduce((prevTotal, key) => {
-      const product = products.find(p => p.id == key);
+      const product = products.find(p => p.id === parseInt(key));
       const count = cart[key];
       return prevTotal + count * product.price;
     }, 0);
@@ -38,7 +38,7 @@ export default function Cart(props) {
               decrementCart={decrementCart}
               removeFromCart={removeFromCart}
               cart={cart}
-              product={products.find(p => p.id == key)}
+              product={products.find(p => p.id === parseInt(key))}
             />
           ))}
         </tbody>

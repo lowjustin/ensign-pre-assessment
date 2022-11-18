@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 
 import LoadingSpinner from "./LoadingSpinner";
 import { formatPrice } from "../helpers";
@@ -12,7 +11,7 @@ export default function Product(props) {
   // if accessing the page directly, we will need to load the data
   if (!products.length) getProductData();
 
-  const product = products.find(p => p.id == productId);
+  const product = products.find(p => p.id === parseInt(productId));
 
   const renderProduct = (product, addToCart) => {
     const { id, image, price, title } = product;

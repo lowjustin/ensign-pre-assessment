@@ -36,7 +36,7 @@ export default function App() {
   useEffect(() => {
     getProductData();
     localStorage.setItem("cart", JSON.stringify(cart));
-  }, ["cart", cart]);
+  }, [cart]);
 
   const addToCart = (key) => {
     let newCart = { ...cart };
