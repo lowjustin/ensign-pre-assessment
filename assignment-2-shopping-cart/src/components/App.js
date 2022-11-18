@@ -9,7 +9,11 @@ import Cart from "./Cart";
 import NotFound from "./NotFound";
 
 export default function App() {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    const saved = localStorage.getItem("cart");
+    const initialValue = JSON.parse(saved);
+    return initialValue || {} ;
+  });
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -31,7 +35,8 @@ export default function App() {
 
   useEffect(() => {
     getProductData();
-  }, []);
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, ["cart", cart]);
 
   const addToCart = (key) => {
     let newCart = { ...cart };
