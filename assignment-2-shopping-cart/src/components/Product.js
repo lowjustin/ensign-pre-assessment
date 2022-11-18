@@ -7,34 +7,12 @@ import { formatPrice } from "../helpers";
 
 export default function Product(props) {
   const { productId } = useParams();
-  const { addToCart, products, loading, getData } = props;
+  const { addToCart, products, loading, getProductData } = props;
 
   // if accessing the page directly, we will need to load the data
-  if (!products.length) getData();
+  if (!products.length) getProductData();
 
   const product = products.find(p => p.id == productId);
-
-  // const [product, setProduct] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
-
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `https://fakestoreapi.com/products/${productId}`
-  //       );
-  //       setProduct(response.data);
-  //       setError(null);
-  //     } catch (err) {
-  //       setError(err.message);
-  //       setProduct(null);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   getData();
-  // }, []);
 
   const renderProduct = (product, addToCart) => {
     const { id, image, price, title } = product;

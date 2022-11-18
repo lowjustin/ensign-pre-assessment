@@ -6,27 +6,6 @@ import ProductItem from "./ProductItem";
 
 export default function Products(props) {
   const { products, loading } = props;
-  // const [products, setProducts] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
-
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `https://fakestoreapi.com/products?limit=10`
-  //       );
-  //       setProducts(response.data);
-  //       setError(null);
-  //     } catch (err) {
-  //       setError(err.message);
-  //       setProducts(null);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   getData();
-  // }, []);
 
   const renderProductItems = (products) => {
     return (
