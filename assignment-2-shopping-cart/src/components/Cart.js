@@ -4,7 +4,7 @@ import LoadingSpinner from "./LoadingSpinner";
 import { formatPrice } from "../helpers";
 
 export default function Cart(props) {
-  let { cart, removeFromCart, products, loading, getData } = props;
+  let { cart, removeFromCart, products, loading, getProductData } = props;
 
   const total = Object.keys(cart).reduce((prevTotal, key) => {
     const product = products.find(p => p.id == key);
@@ -13,7 +13,7 @@ export default function Cart(props) {
   }, 0);
 
   // if accessing the page directly, we will need to load the data
-  if (!products.length) getData();
+  if (!products.length) getProductData();
   
   const renderCart = () => {
     const cartKeys = Object.keys(cart);

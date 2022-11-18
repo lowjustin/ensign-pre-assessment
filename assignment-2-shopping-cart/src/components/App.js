@@ -14,7 +14,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const getData = async () => {
+  const getProductData = async () => {
     try {
       const response = await axios.get(
         `https://fakestoreapi.com/products?limit=10`
@@ -30,7 +30,7 @@ export default function App() {
   };
 
   useEffect(() => {
-    getData();
+    getProductData();
   }, []);
 
   const addToCart = (key) => {
@@ -70,7 +70,7 @@ export default function App() {
                 addToCart={addToCart}
                 products={products}
                 loading={loading}
-                getData={getData}
+                getProductData={getProductData}
               />
             }
           />
@@ -82,7 +82,7 @@ export default function App() {
                 removeFromCart={removeFromCart}
                 products={products}
                 loading={loading}
-                getData={getData}
+                getProductData={getProductData}
               />
             }
           />
