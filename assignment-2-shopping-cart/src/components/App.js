@@ -44,6 +44,12 @@ export default function App() {
     setCart(newCart);
   };
 
+  const decrementCart = (key) => {
+    let newCart = { ...cart };
+    newCart[key] = cart[key] - 1 || 0;
+    setCart(newCart);
+  }
+
   const removeFromCart = (key) => {
     let newCart = { ...cart };
     delete newCart[key];
@@ -84,6 +90,8 @@ export default function App() {
             element={
               <Cart
                 cart={cart}
+                addToCart={addToCart}
+                decrementCart={decrementCart}
                 removeFromCart={removeFromCart}
                 products={products}
                 loading={loading}
