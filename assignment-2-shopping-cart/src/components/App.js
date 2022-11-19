@@ -21,7 +21,7 @@ export default function App() {
   const getProductData = async () => {
     try {
       const response = await axios.get(
-        `https://fakestoreapi.com/products?limit=10`
+        `https://fakestoreapi.com/products?limit=12`
       );
       setProducts(response.data);
       setError(null);
@@ -47,6 +47,7 @@ export default function App() {
   const decrementCart = (key) => {
     let newCart = { ...cart };
     newCart[key] = cart[key] - 1 || 0;
+    if (newCart[key] <= 0) delete newCart[key];
     setCart(newCart);
   }
 
@@ -65,10 +66,10 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <div className="container">
+      <div className="container mb-2">
         <Header cartCount={cartCount} />
       </div>
-      <div className="container">
+      <div className="container mb-8">
         <Routes>
           <Route
             path="/"
@@ -90,6 +91,7 @@ export default function App() {
             element={
               <Cart
                 cart={cart}
+                cartCount={cartCount}
                 addToCart={addToCart}
                 decrementCart={decrementCart}
                 removeFromCart={removeFromCart}

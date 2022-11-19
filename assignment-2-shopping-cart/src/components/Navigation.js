@@ -6,12 +6,12 @@ export default function Navigation(props) {
   
   return (
     <nav>
-      <ul>
-        <li>
+      <ul className="flex gap-4">
+        <li className="p-2 px-4 rounded-full bg-brown-light text-brown">
           <NavLink to="/">Home</NavLink>
         </li>
-        <li>
-          <NavLink to="/cart">Cart {cartCount()}</NavLink>
+        <li className="p-2 px-4 rounded-full bg-brown-light text-brown">
+          <NavLink to="/cart">Cart {(cartCount()) ? <span className="p-1 rounded bg-brown text-white">{cartCount()}</span> : '' }</NavLink>
         </li>
       </ul>
     </nav>
