@@ -1,79 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Assignment 1</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="stylesheet" href="assets/stylesheets/modern-normalize.min.css">
-  <link rel="stylesheet" href="assets/stylesheets/style.css">
-</head>
-<body>
-  <header>
-    <div id="logo">
-      <img src="https://via.placeholder.com/64" alt="">
-    </div>
-    <div id="search">
-      <form action="">
-        <input type="search" placeholder="Search for...">
-      </form>
-    </div>
-    <div id="account">
-      <div class="account-avatar"><img src="https://via.placeholder.com/48" alt=""></div>
-      <div class="account-username">Analyst User</div>
-    </div>
-  </header>
-  
-  <main class="container">
-    <div class="task-categories">
-      <div class="task-category">
-        <h1 class="task-category-title">Backlog</h1>
-        <ul class="task-item-list">
-          <li class="task-item">
-            <h1 class="task-title">Ut egestas egestas</h1>
-            <p class="task-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-            <div class="task-info">
-              <div class="task-user">OZ</div>
-              <div class="task-date">Today</div>
-            </div>
-          </li>
-        </ul>
+    <link rel="stylesheet" href="assets/stylesheets/modern-normalize.min.css" />
+    <link rel="stylesheet" href="assets/stylesheets/style.css" />
+  </head>
+  <body>
+    <header>
+      <div id="logo">
+        <img src="assets/images/logo.png" alt="Website logo" />
       </div>
-
-
-      <div class="task-category">
-        <h1 class="task-category-title">Todo</h1>
-        <ul class="task-item-list">
-          <li class="task-item">
-            <h1 class="task-title">Ut egestas egestas</h1>
-            <p class="task-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-            <div class="task-info">
-              <div class="task-user">OZ</div>
-              <div class="task-date">Today</div>
-            </div>
-          </li>
-        </ul>
+      <div id="search">
+        <form action="">
+          <input type="search" placeholder="Search for..." />
+        </form>
       </div>
-
-
-      <div class="task-category">
-        <h1 class="task-category-title">Done</h1>
-        <ul class="task-item-list">
-          <li class="task-item">
-            <h1 class="task-title">Ut egestas egestas</h1>
-            <p class="task-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-            <div class="task-info">
-              <div class="task-user">OZ</div>
-              <div class="task-date">Today</div>
-            </div>
-          </li>
-        </ul>
+      <div id="account">
+        <div class="account-avatar">
+          <img
+            src="assets/images/jake-nackos-IF9TK5Uy-KI-unsplash.jpg"
+            alt="Sample profile picture"
+          />
+        </div>
+        <div class="account-username">Analyst User</div>
       </div>
-    </div>
-  </main>
-</body>
+    </header>
+
+    <main class="container">
+      <div class="task-categories">
+        <div class="task-category">
+          <h1 class="task-category-title">Backlog</h1>
+          <ul class="task-item-list">
+            <li class="task-item">
+              <h1 class="task-title">Ut egestas egestas</h1>
+              <p class="task-excerpt">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </p>
+              <div class="task-info">
+                <div class="task-user task-user-blue">OZ</div>
+              </div>
+            </li>
+            <li class="task-item">
+              <h1 class="task-title">Nulla pretium volutpat</h1>
+              <p class="task-excerpt">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </p>
+              <div class="task-info">
+                <div class="task-user task-user-purple-light">LE</div>
+                <div class="task-date task-date-overdue">Two days ago</div>
+              </div>
+            </li>
+            <li class="task-item">
+              <h1 class="task-title">In hac habitasse</h1>
+              <p class="task-excerpt">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </p>
+              <div class="task-info">
+                <div class="task-user task-user-blue-light">ME</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="task-category">
+          <h1 class="task-category-title">Todo</h1>
+          <ul class="task-item-list">
+            <li class="task-item">
+              <h1 class="task-title">Curabitur dolor sapien</h1>
+              <p class="task-excerpt">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </p>
+              <div class="task-info">
+                <div class="task-user task-user-purple">AM</div>
+                <div class="task-date task-date-today">Today</div>
+              </div>
+            </li>
+            <li class="task-item">
+              <h1 class="task-title">Curabitur dolor sapien</h1>
+              <p class="task-excerpt">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </p>
+              <div class="task-info">
+                <div class="task-user task-user-blue">OZ</div>
+                <div class="task-date task-date-upcoming">In three days</div>
+              </div>
+            </li>
+            <li class="task-item">
+              <h1 class="task-title">Curabitur dolor sapien</h1>
+              <p class="task-excerpt">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </p>
+              <div class="task-info">
+                <div class="task-user task-user-purple-light">LE</div>
+                <div class="task-date task-date-upcoming">July 21</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="task-category">
+          <h1 class="task-category-title">Done</h1>
+          <ul class="task-item-list">
+            <li class="task-item">
+              <h1 class="task-title">Donec et nulla</h1>
+              <p class="task-excerpt">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </p>
+              <div class="task-info">
+                <div class="task-user task-user-purple-light">LE</div>
+                <div class="task-date task-date-complete">A week ago</div>
+              </div>
+            </li>
+            <li class="task-item">
+              <h1 class="task-title">Donec et nulla</h1>
+              <p class="task-excerpt">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </p>
+              <div class="task-info">
+                <div class="task-user task-user-blue">OZ</div>
+                <div class="task-date task-date-complete">Last Tuesday</div>
+              </div>
+            </li>
+            <li class="task-item">
+              <h1 class="task-title">Donec et nulla</h1>
+              <p class="task-excerpt">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </p>
+              <div class="task-info">
+                <div class="task-user task-user-purple">AM</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>

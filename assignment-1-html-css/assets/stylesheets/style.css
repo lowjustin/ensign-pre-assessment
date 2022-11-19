@@ -37,15 +37,25 @@ ul {
   --debug-red: rgba(255, 0, 0, .1);
   --debug-green: rgba(0, 255, 0, .1);
   --debug-blue: rgba(0, 0, 255, .1);
-  --gray: gray;
-  --lightgray: lightgray;
-  --darkgray: dimgray;
-  --white: white;
+  --gray: #6e6e6e;
+  --gray-light: #b5b5b5;
+  --gray-lighter: #e6e6e6;
+  --gray-lightest: #f7f7f7;
+  --gray-dark: #2d2d2d;
+  --white: #ffffff;
+  --red: #ef3649;
+  --blue: #3591fb;
+  --blue-light: #35cdfb;
+  --green: #57da76;
+  --purple: #915aff;
+  --purple-light: #c335fb;
+
+  --box-shadow: 0 .25rem .5rem var(--gray-lighter);
 }
 
 /* actual styles */
 html {
-  background-color: whitesmoke;
+  background-color: var(--gray-lightest);
 }
 
 body {
@@ -66,7 +76,7 @@ img {
 header {
   align-items: center;
   background-color: var(--white);
-  box-shadow: 0 .25rem 1rem var(--lightgray);
+  box-shadow: var(--box-shadow);
   display: flex;
   gap: 2rem;
   margin-bottom: 2rem;
@@ -74,8 +84,9 @@ header {
 }
 
 #logo {
+  height: 4rem;
   margin: 0;
-  width: 5rem;
+  width: 4rem;
 }
 
 #search {
@@ -86,7 +97,7 @@ input[type="search"] {
   background: url("../symbols/magnifying-glass-solid.svg") no-repeat 2rem center;
   background-size: 2rem;
   border: none;
-  border-left: .25rem solid var(--lightgray);
+  border-left: .25rem solid var(--gray-lighter);
   font-size: 1.5rem;
   font-weight: 300;
   margin: 0;
@@ -96,11 +107,7 @@ input[type="search"] {
 }
 
 input[type="search"]::placeholder {
-  color: var(--lightgray);
-}
-
-main {
-  margin-top: 2rem;
+  color: var(--gray-light);
 }
 
 #account {
@@ -110,19 +117,23 @@ main {
 }
 
 .account-username {
-  color: --darkgray;
+  color: var(--gray);
   font-size: 1.25rem;
   font-weight: 500;
 }
 
 .account-avatar img {
   border-radius: 50%;
+  height: 3rem;
+  width: 3rem;
+  object-fit: cover;
 }
 
 .task-categories {
   display: flex;
   gap: 4rem;
   justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .task-category {
@@ -130,24 +141,32 @@ main {
 }
 
 .task-category-title {
+  color: var(--gray-dark);
   font-size: 2.5rem;
   font-weight: 500;
   margin-bottom: 2rem;
 }
 
+.task-item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .task-item {
   background-color: var(--white);
+  box-shadow: var(--box-shadow);
   padding: 2rem;
 }
 
 .task-title {
-  color: var(--darkgray);
+  color: var(--gray);
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
 .task-excerpt {
-  color: var(--gray);
+  color: var(--gray-light);
   font-size: 1.5rem;
   font-weight: 300;
   margin-bottom: 1.5rem;
@@ -164,7 +183,7 @@ main {
 }
 
 .task-user {
-  background-color: red;
+  background-color: var(--gray);
   border-radius: 50%;
   color: var(--white);
   font-weight: 500;
@@ -174,6 +193,39 @@ main {
   width: 2.5rem;
 }
 
+  .task-user-blue {
+    background-color: var(--blue);
+  }
+
+  .task-user-blue-light {
+    background-color: var(--blue-light);
+  }
+
+  .task-user-purple {
+    background-color: var(--purple);
+  }
+
+  .task-user-purple-light {
+    background-color: var(--purple-light);
+  }
+
 .task-date {
+  color: var(--gray-light);
   font-size: 1.25rem;
 }
+
+  .task-date-overdue {
+    color: var(--red);
+  }
+
+  .task-date-today {
+    color: var(--purple);
+  }
+
+  .task-date-upcoming {
+    color: var(--green);
+  }
+
+  .task-date-complete {
+    color: var(--gray-light);
+  }
