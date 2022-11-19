@@ -12,7 +12,7 @@ export default function App() {
   const [cart, setCart] = useState(() => {
     const saved = localStorage.getItem("cart");
     const initialValue = JSON.parse(saved);
-    return initialValue || {} ;
+    return initialValue || {};
   });
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -49,7 +49,7 @@ export default function App() {
     newCart[key] = cart[key] - 1 || 0;
     if (newCart[key] <= 0) delete newCart[key];
     setCart(newCart);
-  }
+  };
 
   const removeFromCart = (key) => {
     let newCart = { ...cart };
@@ -62,7 +62,7 @@ export default function App() {
       const count = cart[key];
       return prevCount + count;
     }, 0);
-  }
+  };
 
   return (
     <BrowserRouter>

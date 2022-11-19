@@ -29,8 +29,13 @@ export default function Cart(props) {
 
   const renderCart = () => {
     const cartKeys = Object.keys(cart);
+
+    if (cartKeys.length == 0) {
+      return <div className="cart-empty">Your cart is empty</div>;
+    }
+
     return (
-      <table className="table table-auto w-full ">
+      <table className="cart-items table table-auto w-full ">
         <thead>
           <tr>
             <td className="py-4 border-b border-blue font-bold">Title</td>
@@ -62,11 +67,15 @@ export default function Cart(props) {
   const renderSummary = () => {
     return (
       <div className="order-summary">
-        <h4>Number of items: <span className="font-bold">{cartCount()}</span></h4>
-        <h4>Total: <span className="font-bold">{formatPrice(total)}</span></h4>
+        <h4>
+          Number of items: <span className="font-bold">{cartCount()}</span>
+        </h4>
+        <h4>
+          Total: <span className="font-bold">{formatPrice(total)}</span>
+        </h4>
       </div>
     );
-  }
+  };
 
   return (
     <div className="cart">

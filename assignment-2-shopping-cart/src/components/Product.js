@@ -24,8 +24,12 @@ export default function Product(props) {
           />
         </div>
         <div className="product-data md:w-2/3 text-gray-dark">
-          <div className="product-title text-3xl text-blue-dark mb-4">{title}</div>
-          <div className="product-price text-xl text-gray mb-4">{formatPrice(price)}</div>
+          <div className="product-title text-3xl text-blue-dark mb-4">
+            {title}
+          </div>
+          <div className="product-price text-xl text-gray mb-4">
+            {formatPrice(price)}
+          </div>
           <div className="product-description mb-4">
             <p>{description}</p>
           </div>

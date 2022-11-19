@@ -11,7 +11,9 @@ export default function CartItem(props) {
       <td className="cart-item-title py-4 border-b border-blue-light">
         <Link to={`/product/${index}`}>{product.title}</Link>
       </td>
-      <td className="cart-item-price py-4 border-b border-blue-light">{formatPrice(product.price)}</td>
+      <td className="cart-item-price py-4 border-b border-blue-light">
+        {formatPrice(product.price)}
+      </td>
       <td className="py-4 border-b border-blue-light">
         <button
           className="rounded-full w-8 align-center font-bold bg-brown text-white leading-8"
