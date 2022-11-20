@@ -27,7 +27,7 @@ export default function App() {
       setError(null);
     } catch (err) {
       setError(err.message);
-      setProducts(null);
+      setProducts([]);
     } finally {
       setLoading(false);
     }
@@ -63,6 +63,16 @@ export default function App() {
       return prevCount + count;
     }, 0);
   };
+
+  const renderGetProductsError = (error) => {
+    return (
+      <div className="container py-4">
+        <h1 className="error text-2xl text-red">Could not load products: {error}</h1>
+      </div>
+    )
+  }
+
+  if (error) return renderGetProductsError(error);
 
   return (
     <BrowserRouter>

@@ -787,6 +787,11 @@ video {
   line-height: 1;
 }
 
+.text-red {
+  --tw-text-opacity: 1;
+  color: rgb(255 0 0 / var(--tw-text-opacity));
+}
+
 .text-gray {
   --tw-text-opacity: 1;
   color: rgb(132 146 166 / var(--tw-text-opacity));
@@ -840,11 +845,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
-
-.hover\:border-brown-light:hover {
-  --tw-border-opacity: 1;
-  border-color: rgb(240 218 182 / var(--tw-border-opacity));
-}
 
 .hover\:bg-brown-light:hover {
   --tw-bg-opacity: 1;
