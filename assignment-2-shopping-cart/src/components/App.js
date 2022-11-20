@@ -12,7 +12,7 @@ export default function App() {
   const [cart, setCart] = useState(() => {
     const saved = localStorage.getItem("cart");
     const initialValue = JSON.parse(saved);
-    return initialValue || {} ;
+    return initialValue || {};
   });
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,13 +21,13 @@ export default function App() {
   const getProductData = async () => {
     try {
       const response = await axios.get(
-        `https://fakestoreapi.com/products?limit=10`
+        `https://fakestoreapi.com/products?limit=12`
       );
       setProducts(response.data);
       setError(null);
     } catch (err) {
       setError(err.message);
-      setProducts(null);
+      setProducts([]);
     } finally {
       setLoading(false);
     }
@@ -47,8 +47,9 @@ export default function App() {
   const decrementCart = (key) => {
     let newCart = { ...cart };
     newCart[key] = cart[key] - 1 || 0;
+    if (newCart[key] <= 0) delete newCart[key];
     setCart(newCart);
-  }
+  };
 
   const removeFromCart = (key) => {
     let newCart = { ...cart };
@@ -61,14 +62,24 @@ export default function App() {
       const count = cart[key];
       return prevCount + count;
     }, 0);
+  };
+
+  const renderGetProductsError = (error) => {
+    return (
+      <div className="container py-4">
+        <h1 className="error text-2xl text-red">Could not load products: {error}</h1>
+      </div>
+    )
   }
+
+  if (error) return renderGetProductsError(error);
 
   return (
     <BrowserRouter>
-      <div className="container">
+      <div className="container mb-2">
         <Header cartCount={cartCount} />
       </div>
-      <div className="container">
+      <div className="container mb-8">
         <Routes>
           <Route
             path="/"
@@ -90,6 +101,7 @@ export default function App() {
             element={
               <Cart
                 cart={cart}
+                cartCount={cartCount}
                 addToCart={addToCart}
                 decrementCart={decrementCart}
                 removeFromCart={removeFromCart}
