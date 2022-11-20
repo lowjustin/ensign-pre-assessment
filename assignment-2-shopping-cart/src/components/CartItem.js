@@ -16,7 +16,7 @@ export default function CartItem(props) {
       </td>
       <td className="py-4 border-b border-blue-light">
         <button
-          className="rounded-full w-8 align-center font-bold bg-brown text-white leading-8"
+          className="rounded-full w-8 align-center font-bold bg-brown text-white leading-8 hover:bg-brown-light transition"
           onClick={() => decrementCart(index)}
         >
           -
@@ -27,7 +27,7 @@ export default function CartItem(props) {
       </td>
       <td className="py-4 border-b border-blue-light">
         <button
-          className="rounded-full w-8 align-center font-bold bg-brown text-white leading-8"
+          className="rounded-full w-8 align-center font-bold bg-brown text-white leading-8 hover:bg-brown-light transition"
           onClick={() => addToCart(index)}
         >
           +
@@ -36,7 +36,7 @@ export default function CartItem(props) {
       {/* <td className="cart-item-subtotal">{formatPrice(product.price * cart[index])}</td> */}
       <td className="py-4 border-b border-blue-light">
         <button
-          className="rounded p-2 font-bold bg-brown-light text-brown leading-none"
+          className="rounded p-2 font-bold bg-brown-light text-brown leading-none hover:bg-brown hover:text-brown-light transition"
           onClick={() => removeFromCart(index)}
         >
           &times;

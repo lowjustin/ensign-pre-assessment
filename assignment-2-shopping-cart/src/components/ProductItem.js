@@ -20,7 +20,7 @@ export default function ProductItem(props) {
           <div className="product-price text-gray-dark mb-4 grow">
             {formatPrice(price)}
           </div>
-          <div className="product-link block rounded p-4 font-bold bg-brown text-white">
+          <div className="product-link block rounded p-4 font-bold bg-brown text-white hover:bg-brown-light hover:text-brown transition">
             Read more
           </div>
         </div>

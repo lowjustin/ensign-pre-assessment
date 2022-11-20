@@ -35,7 +35,7 @@ export default function Product(props) {
           </div>
           <button
             onClick={() => addToCart(id)}
-            className="rounded p-2 px-4 font-bold bg-brown text-white leading-none"
+            className="rounded p-4 px-8 font-bold bg-brown text-white leading-none hover:bg-brown-light hover:text-brown transition"
           >
             Add to cart
           </button>
