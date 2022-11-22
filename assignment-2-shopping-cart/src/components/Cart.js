@@ -2,10 +2,11 @@ import React from "react";
 import CartItem from "./CartItem";
 import LoadingSpinner from "./LoadingSpinner";
 import { formatPrice } from "../helpers";
+import { useAtom } from "jotai";
+import { cartAtom } from "../lib/atoms";
 
 export default function Cart(props) {
   let {
-    cart,
     cartCount,
     addToCart,
     decrementCart,
@@ -15,6 +16,7 @@ export default function Cart(props) {
     getProductData,
   } = props;
 
+  const [cart] = useAtom(cartAtom);
   // if accessing the page directly, we will need to load the data
   if (!products.length) getProductData();
 

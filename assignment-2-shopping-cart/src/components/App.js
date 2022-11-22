@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import axios from "axios";
+import { useAtom } from "jotai";
 
 import Header from "./Header";
+import Login from "./Login";
+import Logout from "./Logout";
+import Register from "./Register";
 import Products from "./Products";
 import Product from "./Product";
 import Cart from "./Cart";
 import NotFound from "./NotFound";
 
+import { tokenAtom, cartAtom } from "../lib/atoms";
+
 export default function App() {
-  const [cart, setCart] = useState(() => {
-    const saved = localStorage.getItem("cart");
-    const initialValue = JSON.parse(saved);
-    return initialValue || {};
-  });
+  const [token, setToken] = useAtom(tokenAtom);
+  const [cart, setCart] = useAtom(cartAtom);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -36,6 +39,8 @@ export default function App() {
   useEffect(() => {
     getProductData();
     localStorage.setItem("cart", JSON.stringify(cart));
+    // console.log(localStorage.getItem("userToken"));
+    // setToken(localStorage.getItem("userToken"));
   }, [cart]);
 
   const addToCart = (key) => {
@@ -67,22 +72,34 @@ export default function App() {
   const renderGetProductsError = (error) => {
     return (
       <div className="container py-4">
-        <h1 className="error text-2xl text-red">Could not load products: {error}</h1>
+        <h1 className="error text-2xl text-red">
+          Could not load products: {error}
+        </h1>
       </div>
-    )
-  }
+    );
+  };
 
   if (error) return renderGetProductsError(error);
 
   return (
     <BrowserRouter>
+      {(token) ? "successfully logged in" : ""}
       <div className="container mb-2">
         <Header cartCount={cartCount} />
       </div>
       <div className="container mb-8">
         <Routes>
           <Route
-            path="/"
+            path="/login"
+            element={<Login />}
+          />
+          <Route
+            path="/logout"
+            element={<Logout />}
+          />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/products"
             element={<Products products={products} loading={loading} />}
           />
           <Route
@@ -100,7 +117,6 @@ export default function App() {
             path="/cart"
             element={
               <Cart
-                cart={cart}
                 cartCount={cartCount}
                 addToCart={addToCart}
                 decrementCart={decrementCart}
