@@ -32,7 +32,6 @@ export default function CartItem(props) {
           +
         </button>
       </td>
-      {/* <td className="cart-item-subtotal">{formatPrice(product.price * cart[index])}</td> */}
       <td className="py-4 border-b border-blue-light">
         <button
           className="rounded p-2 font-bold bg-brown-light text-brown leading-none hover:bg-brown hover:text-brown-light transition"
