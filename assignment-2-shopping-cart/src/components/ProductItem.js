@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { formatPrice } from "../helpers";
 
@@ -6,7 +5,7 @@ export default function ProductItem(props) {
   const { id, image, price, title } = props.product;
   return (
     <li className="product-item rounded border border-blue" key={props.index}>
-      <Link to={`product/${id}`} className="flex flex-col h-full">
+      <Link to={`/product/${id}`} className="flex flex-col h-full">
         <div className="product-image p-4 h-80 overflow-hidden border-b border-blue">
           <img
             className="object-contain object-center w-full h-full"
