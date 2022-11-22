@@ -62,13 +62,6 @@ export default function App() {
     setCart(newCart);
   };
 
-  const cartCount = () => {
-    return Object.keys(cart).reduce((prevCount, key) => {
-      const count = cart[key];
-      return prevCount + count;
-    }, 0);
-  };
-
   const renderGetProductsError = (error) => {
     return (
       <div className="container py-4">
@@ -85,7 +78,7 @@ export default function App() {
     <BrowserRouter>
       {(token) ? "successfully logged in" : ""}
       <div className="container mb-2">
-        <Header cartCount={cartCount} />
+        <Header />
       </div>
       <div className="container mb-8">
         <Routes>
@@ -117,7 +110,6 @@ export default function App() {
             path="/cart"
             element={
               <Cart
-                cartCount={cartCount}
                 addToCart={addToCart}
                 decrementCart={decrementCart}
                 removeFromCart={removeFromCart}

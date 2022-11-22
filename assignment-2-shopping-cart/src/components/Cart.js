@@ -1,5 +1,5 @@
-import React from "react";
 import CartItem from "./CartItem";
+import CartCount from "./CartCount";
 import LoadingSpinner from "./LoadingSpinner";
 import { formatPrice } from "../helpers";
 import { useAtom } from "jotai";
@@ -17,6 +17,7 @@ export default function Cart(props) {
   } = props;
 
   const [cart] = useAtom(cartAtom);
+
   // if accessing the page directly, we will need to load the data
   if (!products.length) getProductData();
 
@@ -70,7 +71,7 @@ export default function Cart(props) {
     return (
       <div className="order-summary">
         <h4>
-          Number of items: <span className="font-bold">{cartCount()}</span>
+          Number of items: <span className="font-bold"><CartCount /></span>
         </h4>
         <h4>
           Total: <span className="font-bold">{formatPrice(total)}</span>
