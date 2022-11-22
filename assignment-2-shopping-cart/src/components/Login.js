@@ -28,14 +28,14 @@ export default function Login() {
     };
 
     try {
-      const res = await axios.post(`http://localhost:4000/login`, user);
-      setToken(res.data.token);
+      const response = await axios.post(`http://localhost:4000/login`, user);
+      setToken(response.data.token);
       setError(null);
-      console.log("success", res.data);
+      console.log("success", response.data);
     } catch (err) {
       console.log("error", err);
       setError(err.response.data);
-      setToken({});
+      setToken("");
     } finally {
       setLoading(false);
     }
