@@ -1,39 +1,31 @@
+import { useAtom } from "jotai";
+import { cartAtom, loadProductsAtom } from "../lib/atoms";
+import { formatPrice } from "../helpers";
 import CartItem from "./CartItem";
 import CartCount from "./CartCount";
+import LoadingError from "./LoadingError";
 import LoadingSpinner from "./LoadingSpinner";
-import { formatPrice } from "../helpers";
-import { useAtom } from "jotai";
-import { cartAtom } from "../lib/atoms";
 
 export default function Cart(props) {
-  let {
-    cartCount,
-    addToCart,
-    decrementCart,
-    removeFromCart,
-    products,
-    loading,
-    getProductData,
-  } = props;
+  let { addToCart, decrementCart, removeFromCart } = props;
 
   const [cart] = useAtom(cartAtom);
+  const [products] = useAtom(loadProductsAtom);
 
-  // if accessing the page directly, we will need to load the data
-  if (!products.length) getProductData();
-
-  let total = 0.0;
-  if (loading === false) {
+  const calcTotal = (productsArr) => {
+    let total = 0.0;
     total = Object.keys(cart).reduce((prevTotal, key) => {
-      const product = products.find((p) => p.id === parseInt(key));
+      const product = productsArr.find((p) => p.id === parseInt(key));
       const count = cart[key];
       return prevTotal + count * product.price;
     }, 0);
-  }
+    return total;
+  };
 
-  const renderCart = () => {
+  const renderCart = (productsArr) => {
     const cartKeys = Object.keys(cart);
 
-    if (cartKeys.length == 0) {
+    if (cartKeys.length === 0) {
       return <div className="cart-empty">Your cart is empty</div>;
     }
 
@@ -46,7 +38,6 @@ export default function Cart(props) {
             <td className="py-4 border-b border-blue font-bold" colSpan="3">
               Quantity
             </td>
-            {/* <td className="font-bold">Subtotal</td> */}
             <td className="py-4 border-b border-blue"></td>
           </tr>
         </thead>
@@ -59,7 +50,7 @@ export default function Cart(props) {
               decrementCart={decrementCart}
               removeFromCart={removeFromCart}
               cart={cart}
-              product={products.find((p) => p.id === parseInt(key))}
+              product={productsArr.find((p) => p.id === parseInt(key))}
             />
           ))}
         </tbody>
@@ -67,32 +58,48 @@ export default function Cart(props) {
     );
   };
 
-  const renderSummary = () => {
+  const renderSummary = (productsArr) => {
     return (
       <div className="order-summary">
         <h4>
-          Number of items: <span className="font-bold"><CartCount /></span>
+          Number of items:{" "}
+          <span className="font-bold">
+            <CartCount />
+          </span>
         </h4>
         <h4>
-          Total: <span className="font-bold">{formatPrice(total)}</span>
+          Total:{" "}
+          <span className="font-bold">
+            {formatPrice(calcTotal(productsArr))}
+          </span>
         </h4>
       </div>
     );
   };
 
+  const renderContent = () => {
+    switch (products.state) {
+      case "hasData":
+        return (
+          <div className="md:flex border border-blue rounded">
+            <div className="grow p-8">{renderCart(products.data)}</div>
+            <div className="md:w-1/3 bg-blue-light p-8 text-gray-dark">
+              <h3 className="text-lg font-bold mb-2">Order summary</h3>
+              {renderSummary(products.data)}
+            </div>
+          </div>
+        );
+      case "hasError":
+        return <LoadingError />;
+      default:
+        return <LoadingSpinner />;
+    }
+  };
+
   return (
     <div className="cart">
       <h2 className="text-2xl mb-4 text-gray">Cart</h2>
-      <div className="md:flex border border-blue rounded">
-        {/* show loader if products not loaded, else render product items */}
-        <div className="grow p-8">
-          {loading ? <LoadingSpinner /> : renderCart()}
-        </div>
-        <div className="md:w-1/3 bg-blue-light p-8 text-gray-dark">
-          <h3 className="text-lg font-bold mb-2">Order summary</h3>
-          {loading ? <LoadingSpinner /> : renderSummary()}
-        </div>
-      </div>
+      {renderContent()}
     </div>
   );
 }

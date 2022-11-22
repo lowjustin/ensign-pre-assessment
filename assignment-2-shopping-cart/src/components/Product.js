@@ -1,16 +1,15 @@
 import { useParams } from "react-router-dom";
-
-import LoadingSpinner from "./LoadingSpinner";
+import { useAtom } from "jotai";
+import { loadProductsAtom } from "../lib/atoms";
 import { formatPrice } from "../helpers";
+import LoadingError from "./LoadingError";
+import LoadingSpinner from "./LoadingSpinner";
 
 export default function Product(props) {
+  const [products] = useAtom(loadProductsAtom);
+
   const { productId } = useParams();
-  const { addToCart, products, loading, getProductData } = props;
-
-  // if accessing the page directly, we will need to load the data
-  if (!products.length) getProductData();
-
-  const product = products.find((p) => p.id === parseInt(productId));
+  const { addToCart } = props;
 
   const renderProduct = (product, addToCart) => {
     const { id, image, price, title, description } = product;
@@ -43,11 +42,22 @@ export default function Product(props) {
     );
   };
 
+  const renderContent = () => {
+    switch (products.state) {
+      case "hasData":
+        const product = products.data.find((p) => p.id === parseInt(productId));
+        return renderProduct(product, addToCart);
+      case "hasError":
+        return <LoadingError />;
+      default:
+        return <LoadingSpinner />;
+    }
+  };
+
   return (
     <div>
       <h2 className="text-2xl text-gray mb-4">Product</h2>
-      {/* show loader if product not loaded, else render product item */}
-      {loading ? <LoadingSpinner /> : renderProduct(product, addToCart)}
+      {renderContent()}
     </div>
   );
 }
