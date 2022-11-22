@@ -21,7 +21,7 @@ export default function App() {
   const getProductData = async () => {
     try {
       const response = await axios.get(
-        `https://fakestoreapi.com/products?limit=12`
+        `http://localhost:4000/products?limit=12`
       );
       setProducts(response.data);
       setError(null);
