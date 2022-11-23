@@ -29,7 +29,7 @@ const ProtectedRoute = ({ token, redirectPath = "/login" }) => {
 };
 
 export default function App() {
-  const [token] = useAtom(tokenAtom);
+  const [token, setToken] = useAtom(tokenAtom);
 
   return (
     <BrowserRouter>
@@ -39,8 +39,8 @@ export default function App() {
       </div>
       <div className="container mb-8">
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/logout" element={<Logout />} />
+          <Route path="/login" element={<Login token={token} setToken={setToken} />} />
+          <Route path="/logout" element={<Logout token={token} setToken={setToken} />} />
           <Route path="/register" element={<Register />} />
           <Route element={<ProtectedRoute token={token} />}>
             <Route path="/products" element={<Products />} />

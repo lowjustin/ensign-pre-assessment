@@ -1,8 +1,6 @@
-import { useAtom } from "jotai";
-import { tokenAtom } from "../lib/atoms";
-
-export default function Logout() {
-  const [token, setToken] = useAtom(tokenAtom);
+export default function Logout(props) {
+  // state from parents
+  const { token, setToken } = props;
 
   if (token) setToken("");
 

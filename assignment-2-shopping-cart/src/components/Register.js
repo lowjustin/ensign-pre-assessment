@@ -3,10 +3,12 @@ import axios from "axios";
 import LoadingSpinner from "./LoadingSpinner";
 
 export default function Register() {
+  // internal state
   const [data, setData] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // internal refs
   const usernameRef = useRef("");
   const passwordRef = useRef("");
 

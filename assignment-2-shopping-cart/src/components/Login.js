@@ -1,25 +1,22 @@
 import { useRef, useState } from "react";
 import axios from "axios";
-import { useAtom } from "jotai";
-import { tokenAtom } from "../lib/atoms";
 import LoadingSpinner from "./LoadingSpinner";
 
-export default function Login() {
-  const [token, setToken] = useAtom(tokenAtom);
+export default function Login(props) {
+  // state from parents
+  const { token, setToken } = props;
+
+  // internal state
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // internal refs
   const usernameRef = useRef("");
   const passwordRef = useRef("");
 
   const loginUser = async (event) => {
     event.preventDefault();
-
-    if (token) {
-      console.log("already logged in");
-      return;
-    }
-
+    
     setLoading(true);
 
     const user = {
