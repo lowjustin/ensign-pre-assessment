@@ -12,7 +12,7 @@ export default function Products() {
       case "hasData":
         return renderProductItems(products.data);
       case "hasError":
-        return <LoadingError />;
+        return <LoadingError message="Error loading products" />;
       default:
         return <LoadingSpinner />;
     }

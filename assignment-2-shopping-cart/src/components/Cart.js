@@ -101,7 +101,7 @@ export default function Cart(props) {
           </div>
         );
       case "hasError":
-        return <LoadingError />;
+        return <LoadingError message="Error loading products" />;
       default:
         return <LoadingSpinner />;
     }

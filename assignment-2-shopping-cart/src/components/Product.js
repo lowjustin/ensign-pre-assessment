@@ -43,7 +43,7 @@ export default function Product() {
         const product = products.data.find((p) => p.id === parseInt(productId));
         return renderProduct(product);
       case "hasError":
-        return <LoadingError />;
+        return <LoadingError message="Error loading products"  />;
       default:
         return <LoadingSpinner />;
     }
