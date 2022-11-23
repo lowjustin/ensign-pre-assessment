@@ -1,7 +1,7 @@
 // import { useState, useEffect } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate, Outlet } from "react-router-dom";
 import { useAtom } from "jotai";
-import { tokenAtom, cartAtom} from "../lib/atoms";
+import { tokenAtom, cartAtom } from "../lib/atoms";
 
 import Header from "./Header";
 import Login from "./Login";
@@ -11,6 +11,15 @@ import Products from "./Products";
 import Product from "./Product";
 import Cart from "./Cart";
 import NotFound from "./NotFound";
+
+const ProtectedRoute = ({ token, redirectPath = "/login" }) => {
+  // temporary, still need to check if token is valid
+  if (!token) {
+    return <Navigate to={redirectPath} replace />;
+  }
+  
+  return <Outlet />;
+};
 
 export default function App() {
   const [token, setToken] = useAtom(tokenAtom);
@@ -49,30 +58,23 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<Register />} />
-          <Route
-            path="/products"
-            element={
-              <Products />
-            }
-          />
-          <Route
-            path="/product/:productId"
-            element={
-              <Product
-                addToCart={addToCart}
-              />
-            }
-          />
-          <Route
-            path="/cart"
-            element={
-              <Cart
-                addToCart={addToCart}
-                decrementCart={decrementCart}
-                removeFromCart={removeFromCart}
-              />
-            }
-          />
+          <Route element={<ProtectedRoute token={token} />}>
+            <Route path="/products" element={<Products />} />
+            <Route
+              path="/product/:productId"
+              element={<Product addToCart={addToCart} />}
+            />
+            <Route
+              path="/cart"
+              element={
+                <Cart
+                  addToCart={addToCart}
+                  decrementCart={decrementCart}
+                  removeFromCart={removeFromCart}
+                />
+              }
+            />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
