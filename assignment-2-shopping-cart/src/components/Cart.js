@@ -1,22 +1,22 @@
 import axios from "axios";
 import { useAtom } from "jotai";
-import { cartAtom, loadProductsAtom, tokenAtom } from "../lib/atoms";
+import { cartAtom, loadProductsAtom } from "../lib/atoms";
 import { formatPrice } from "../helpers";
 import CartItem from "./CartItem";
 import { CartCount, calcTotal } from "./CartFunctions";
 import LoadingError from "./LoadingError";
 import LoadingSpinner from "./LoadingSpinner";
 
-export default function Cart() {
+export default function Cart(props) {
+  const { user } = props;
   const [cart] = useAtom(cartAtom);
-  const [token] = useAtom(tokenAtom);
   const [products] = useAtom(loadProductsAtom);
 
   const saveOrder = async () => {
     try {
       const config = {
         headers: {
-          Authorization: `token ${token}`,
+          Authorization: `token ${user.token}`,
         },
       };
       const data = { cart };
@@ -78,7 +78,9 @@ export default function Cart() {
             {formatPrice(calcTotal(cart, productsArr))}
           </span>
         </h4>
-        <button className="button" onClick={saveOrder}>Check out</button>
+        <button className="button" onClick={saveOrder}>
+          Check out
+        </button>
       </div>
     );
   };

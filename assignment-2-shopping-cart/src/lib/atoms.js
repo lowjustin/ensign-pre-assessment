@@ -1,15 +1,15 @@
 import axios from "axios";
 import { atomWithDefault, atomWithStorage, loadable } from "jotai/utils";
 
-const tokenAtom = atomWithStorage("userToken", "");
+const userAtom = atomWithStorage("user", {});
 
 const cartAtom = atomWithStorage("cart", {});
 
 const productsAtom = atomWithDefault(async (get) => {
   try {
-    const token = get(tokenAtom);
+    const user = get(userAtom);
     const config = {headers: {
-      'Authorization': `token ${token}`
+      'Authorization': `token ${user.token}`
     }}
     const response = await axios.get(
       `http://localhost:4000/products?limit=12`, config
@@ -21,4 +21,4 @@ const productsAtom = atomWithDefault(async (get) => {
 });
 const loadProductsAtom = loadable(productsAtom);
 
-export { tokenAtom, cartAtom, productsAtom, loadProductsAtom };
+export { cartAtom, productsAtom, loadProductsAtom, userAtom };

@@ -4,7 +4,7 @@ import LoadingSpinner from "./LoadingSpinner";
 
 export default function Login(props) {
   // state from parents
-  const { token, setToken } = props;
+  const { user, setUser } = props;
 
   // internal state
   const [error, setError] = useState("");
@@ -19,20 +19,21 @@ export default function Login(props) {
 
     setLoading(true);
 
-    const user = {
+    const payload = {
       username: usernameRef.current.value,
       password: passwordRef.current.value,
     };
 
     try {
-      const response = await axios.post(`http://localhost:4000/login`, user);
-      setToken(response.data.token);
+      const response = await axios.post(`http://localhost:4000/login`, payload);
+      const { userId, username, token } = response.data;
+      setUser({ userId, username, token });
       setError(null);
-      console.log("success", response.data);
+      // console.log("success", response.data);
     } catch (err) {
       console.log("error", err);
-      setError(err.response.data);
-      setToken("");
+      // setError(err.response.data);
+      setUser("");
     } finally {
       setLoading(false);
     }

@@ -1,8 +1,8 @@
 export default function Logout(props) {
   // state from parents
-  const { token, setToken } = props;
+  const { user, setUser } = props;
 
-  if (token) setToken("");
+  if (user) setUser("");
 
   return (
     <div className="user-logout">

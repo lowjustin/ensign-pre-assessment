@@ -6,58 +6,27 @@ export default function Navigation() {
     <nav>
       <ul className="flex gap-4">
         <li>
-          <NavLink
-            className="nav-item"
-            to="/"
-          >
+          <NavLink className="nav-item" to="/">
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink
-            className="nav-item"
-            to="/register"
-          >
-            Register
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            className="nav-item"
-            to="/login"
-          >
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            className="nav-item"
-            to="/logout"
-          >
+          <NavLink className="nav-item" to="/logout">
             Logout
           </NavLink>
         </li>
         <li>
-          <NavLink
-            className="nav-item"
-            to="/products"
-          >
+          <NavLink className="nav-item" to="/products">
             Products
           </NavLink>
         </li>
         <li>
-          <NavLink
-            className="nav-item"
-            to="/orders"
-          >
+          <NavLink className="nav-item" to="/orders">
             Orders
           </NavLink>
         </li>
         <li>
-          <NavLink
-            className="nav-item"
-            to="/cart"
-          >
+          <NavLink className="nav-item" to="/cart">
             Cart
             {<CartCount /> ? (
               <span className="p-1 rounded bg-brown text-white">

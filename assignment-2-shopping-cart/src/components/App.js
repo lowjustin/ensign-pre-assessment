@@ -5,24 +5,21 @@ import {
   Navigate,
   Outlet,
 } from "react-router-dom";
-import axios from "axios";
 import { useAtom } from "jotai";
-import { tokenAtom } from "../lib/atoms";
+import { userAtom } from "../lib/atoms";
 
 import Header from "./Header";
 import Home from "./Home";
-import Login from "./Login";
 import Logout from "./Logout";
-import Register from "./Register";
 import Products from "./Products";
 import Product from "./Product";
 import Orders from "./Orders";
 import Cart from "./Cart";
 import NotFound from "./NotFound";
 
-const ProtectedRoute = ({ token, redirectPath = "/" }) => {
+const ProtectedRoute = ({ user, redirectPath = "/" }) => {
   // temporary, still need to check if token is valid
-  if (!token) {
+  if (!user) {
     return <Navigate to={redirectPath} replace />;
   }
 
@@ -30,11 +27,11 @@ const ProtectedRoute = ({ token, redirectPath = "/" }) => {
 };
 
 export default function App() {
-  const [token, setToken] = useAtom(tokenAtom);
+  const [user, setUser] = useAtom(userAtom);
 
   return (
     <BrowserRouter>
-      {token ? "successfully logged in" : ""}
+      {user ? "successfully logged in" : ""}
       <div className="container mb-2">
         <Header />
       </div>
@@ -42,17 +39,17 @@ export default function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home token={token} setToken={setToken} />}
+            element={<Home user={user} setUser={setUser} />}
           />
           <Route
             path="/logout"
-            element={<Logout token={token} setToken={setToken} />}
+            element={<Logout user={user} setUser={setUser} />}
           />
-          <Route element={<ProtectedRoute token={token} />}>
-            <Route path="/products" element={<Products />} />
-            <Route path="/product/:productId" element={<Product />} />
-            <Route path="/orders" element={<Orders />} />
-            <Route path="/cart" element={<Cart />} />
+          <Route element={<ProtectedRoute user={user} />}>
+            <Route path="/products" element={<Products user={user} />} />
+            <Route path="/product/:productId" element={<Product user={user} />} />
+            <Route path="/orders" element={<Orders user={user} />} />
+            <Route path="/cart" element={<Cart user={user} />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
