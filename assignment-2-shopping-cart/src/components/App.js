@@ -7,7 +7,7 @@ import {
   Outlet,
 } from "react-router-dom";
 import { useAtom } from "jotai";
-import { tokenAtom, cartAtom } from "../lib/atoms";
+import { tokenAtom } from "../lib/atoms";
 
 import Header from "./Header";
 import Login from "./Login";
@@ -15,6 +15,7 @@ import Logout from "./Logout";
 import Register from "./Register";
 import Products from "./Products";
 import Product from "./Product";
+import Orders from "./Orders";
 import Cart from "./Cart";
 import NotFound from "./NotFound";
 
@@ -28,12 +29,7 @@ const ProtectedRoute = ({ token, redirectPath = "/login" }) => {
 };
 
 export default function App() {
-  const [token, setToken] = useAtom(tokenAtom);
-  const [cart, setCart] = useAtom(cartAtom);
-
-  // useEffect(() => {
-  // console.log("verify user");
-  // });
+  const [token] = useAtom(tokenAtom);
 
   return (
     <BrowserRouter>
@@ -52,6 +48,7 @@ export default function App() {
               path="/product/:productId"
               element={<Product />}
             />
+            <Route path="/orders" element={<Orders />} />
             <Route path="/cart" element={<Cart />} />
           </Route>
           <Route path="*" element={<NotFound />} />

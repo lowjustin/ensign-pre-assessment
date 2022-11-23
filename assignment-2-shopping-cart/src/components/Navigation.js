@@ -48,6 +48,14 @@ export default function Navigation() {
         <li>
           <NavLink
             className="p-2 px-4 rounded-full bg-brown-light text-brown hover:bg-brown hover:text-brown-light transition"
+            to="/orders"
+          >
+            Orders
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            className="p-2 px-4 rounded-full bg-brown-light text-brown hover:bg-brown hover:text-brown-light transition"
             to="/cart"
           >
             Cart
