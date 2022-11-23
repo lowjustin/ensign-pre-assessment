@@ -21,7 +21,7 @@ export default function Products() {
   const renderProductItems = (productsArr) => {
     return (
       <ul className="products-list grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {Object.keys(products.data).map((key) => (
+        {Object.keys(productsArr).map((key) => (
           <ProductItem key={key} index={key} product={productsArr[key]} />
         ))}
       </ul>

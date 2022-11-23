@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { cartAtom, productsAtom } from "../lib/atoms";
+import { cartAtom } from "../lib/atoms";
 
 export function AddToCart(props) {
   const { index, label = "+", circle = true } = props;

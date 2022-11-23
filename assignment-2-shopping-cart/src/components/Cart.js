@@ -19,10 +19,7 @@ export default function Cart() {
           Authorization: `token ${token}`,
         },
       };
-      const data = {
-        cart,
-        token,
-      };
+      const data = { cart };
       const response = await axios.post(
         `http://localhost:4000/orders`,
         data,
