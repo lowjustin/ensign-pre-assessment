@@ -5,10 +5,14 @@ const tokenAtom = atomWithStorage("userToken", "");
 
 const cartAtom = atomWithStorage("cart", {});
 
-const productsAtom = atomWithDefault(async () => {
+const productsAtom = atomWithDefault(async (get) => {
   try {
+    const token = get(tokenAtom);
+    const config = {headers: {
+      'Authorization': `token ${token}`
+    }}
     const response = await axios.get(
-      `http://localhost:4000/products?limit=12`
+      `http://localhost:4000/products?limit=12`, config
     );
     return response.data;
   } catch (err) {
