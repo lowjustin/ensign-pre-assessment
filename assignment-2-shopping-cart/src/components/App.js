@@ -1,4 +1,3 @@
-// import { useState, useEffect } from "react";
 import {
   BrowserRouter,
   Route,
@@ -6,10 +5,12 @@ import {
   Navigate,
   Outlet,
 } from "react-router-dom";
+import axios from "axios";
 import { useAtom } from "jotai";
 import { tokenAtom } from "../lib/atoms";
 
 import Header from "./Header";
+import Home from "./Home";
 import Login from "./Login";
 import Logout from "./Logout";
 import Register from "./Register";
@@ -19,7 +20,7 @@ import Orders from "./Orders";
 import Cart from "./Cart";
 import NotFound from "./NotFound";
 
-const ProtectedRoute = ({ token, redirectPath = "/login" }) => {
+const ProtectedRoute = ({ token, redirectPath = "/" }) => {
   // temporary, still need to check if token is valid
   if (!token) {
     return <Navigate to={redirectPath} replace />;
@@ -39,15 +40,17 @@ export default function App() {
       </div>
       <div className="container mb-8">
         <Routes>
-          <Route path="/login" element={<Login token={token} setToken={setToken} />} />
-          <Route path="/logout" element={<Logout token={token} setToken={setToken} />} />
-          <Route path="/register" element={<Register />} />
+          <Route
+            path="/"
+            element={<Home token={token} setToken={setToken} />}
+          />
+          <Route
+            path="/logout"
+            element={<Logout token={token} setToken={setToken} />}
+          />
           <Route element={<ProtectedRoute token={token} />}>
             <Route path="/products" element={<Products />} />
-            <Route
-              path="/product/:productId"
-              element={<Product />}
-            />
+            <Route path="/product/:productId" element={<Product />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/cart" element={<Cart />} />
           </Route>
