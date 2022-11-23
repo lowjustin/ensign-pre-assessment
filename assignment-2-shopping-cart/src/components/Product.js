@@ -18,7 +18,7 @@ export default function Product() {
         <div className="product-image grow h-96 md:max-h-96 overflow-hidden mb-8 md:mb-0">
           <img
             className="object-contain object-center w-full h-full"
-            src={image}
+            src={image} alt=""
           />
         </div>
         <div className="product-data md:w-2/3 text-gray-dark">

@@ -9,7 +9,7 @@ export default function ProductItem(props) {
         <div className="product-image p-4 h-80 overflow-hidden border-b border-blue">
           <img
             className="object-contain object-center w-full h-full"
-            src={image}
+            src={image} alt=""
           />
         </div>
         <div className="product-data p-4 text-center flex flex-col grow bg-blue-light">
