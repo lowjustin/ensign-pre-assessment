@@ -78,7 +78,7 @@ export default function Cart() {
             {formatPrice(calcTotal(cart, productsArr))}
           </span>
         </h4>
-        <button onClick={saveOrder}>Check out</button>
+        <button className="button" onClick={saveOrder}>Check out</button>
       </div>
     );
   };
@@ -88,9 +88,12 @@ export default function Cart() {
       case "hasData":
         return (
           <div className="md:flex border border-blue rounded">
-            <div className="grow p-8">{renderCart(products.data)}</div>
+            <div className="grow p-8">
+              <h3 className="title-section">Items</h3>
+              {renderCart(products.data)}
+            </div>
             <div className="md:w-1/3 bg-blue-light p-8 text-gray-dark">
-              <h3 className="text-lg font-bold mb-2">Order summary</h3>
+              <h3 className="title-section">Order summary</h3>
               {renderSummary(products.data)}
             </div>
           </div>
@@ -104,7 +107,7 @@ export default function Cart() {
 
   return (
     <div className="cart">
-      <h2 className="text-2xl mb-4 text-gray">Cart</h2>
+      <h1 className="title-page">Cart</h1>
       {renderContent()}
     </div>
   );

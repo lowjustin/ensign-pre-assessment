@@ -16,7 +16,7 @@ export default function Login(props) {
 
   const loginUser = async (event) => {
     event.preventDefault();
-    
+
     setLoading(true);
 
     const user = {
@@ -40,11 +40,12 @@ export default function Login(props) {
 
   return (
     <div className="user-login">
-      <h2>Login</h2>
+      <h3 className="title-section">Login</h3>
       <form onSubmit={loginUser}>
         <div>
           <label htmlFor="username">Username</label>
           <input
+            className="input"
             name="username"
             ref={usernameRef}
             type="text"
@@ -54,9 +55,16 @@ export default function Login(props) {
         </div>
         <div>
           <label htmlFor="password">Password</label>
-          <input name="password" ref={passwordRef} type="password" />
+          <input
+            className="input"
+            name="password"
+            ref={passwordRef}
+            type="password"
+          />
         </div>
-        <button type="submit">Submit</button>
+        <button className="button" type="submit">
+          Submit
+        </button>
       </form>
       {error ? JSON.stringify(error) : ""}
       {loading ? <LoadingSpinner /> : ""}

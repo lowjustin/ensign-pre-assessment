@@ -51,7 +51,7 @@ export default function Product() {
 
   return (
     <div>
-      <h2 className="text-2xl text-gray mb-4">Product</h2>
+      <h1 className="title-page">Product</h1>
       {renderContent()}
     </div>
   );

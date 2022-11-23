@@ -79,7 +79,7 @@ export default function Orders() {
 
   return (
     <div className="orders">
-      <h2 className="text-2xl mb-4 text-gray">Orders</h2>
+      <h1 className="title-page">Orders</h1>
       {error ? <LoadingError /> : ""}
       {loading ? <LoadingSpinner /> : renderOrders()}
     </div>

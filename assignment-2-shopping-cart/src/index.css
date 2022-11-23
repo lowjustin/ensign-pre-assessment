@@ -24,3 +24,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
+
+.title-page {
+  @apply text-3xl;
+}
+
+.title-feature {
+  @apply text-2xl;
+}
+
+.title-section {
+  @apply uppercase font-bold;
+}
+
+.nav-item {
+  @apply text-sm font-bold uppercase transition-opacity duration-300 hover:opacity-60;
+}
+
+.button {
+  @apply block px-8 py-2 uppercase font-bold text-white bg-gray transition-opacity duration-300 hover:opacity-60;
+}
+
+.input {
+  @apply block w-full px-4 py-2 bg-white border border-gray;
+}

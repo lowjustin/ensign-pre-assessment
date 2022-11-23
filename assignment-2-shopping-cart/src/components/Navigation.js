@@ -7,7 +7,7 @@ export default function Navigation() {
       <ul className="flex gap-4">
         <li>
           <NavLink
-            className="p-2 px-4 rounded-full bg-brown-light text-brown hover:bg-brown hover:text-brown-light transition"
+            className="nav-item"
             to="/"
           >
             Home
@@ -15,7 +15,7 @@ export default function Navigation() {
         </li>
         <li>
           <NavLink
-            className="p-2 px-4 rounded-full bg-brown-light text-brown hover:bg-brown hover:text-brown-light transition"
+            className="nav-item"
             to="/register"
           >
             Register
@@ -23,7 +23,7 @@ export default function Navigation() {
         </li>
         <li>
           <NavLink
-            className="p-2 px-4 rounded-full bg-brown-light text-brown hover:bg-brown hover:text-brown-light transition"
+            className="nav-item"
             to="/login"
           >
             Login
@@ -31,7 +31,7 @@ export default function Navigation() {
         </li>
         <li>
           <NavLink
-            className="p-2 px-4 rounded-full bg-brown-light text-brown hover:bg-brown hover:text-brown-light transition"
+            className="nav-item"
             to="/logout"
           >
             Logout
@@ -39,7 +39,7 @@ export default function Navigation() {
         </li>
         <li>
           <NavLink
-            className="p-2 px-4 rounded-full bg-brown-light text-brown hover:bg-brown hover:text-brown-light transition"
+            className="nav-item"
             to="/products"
           >
             Products
@@ -47,7 +47,7 @@ export default function Navigation() {
         </li>
         <li>
           <NavLink
-            className="p-2 px-4 rounded-full bg-brown-light text-brown hover:bg-brown hover:text-brown-light transition"
+            className="nav-item"
             to="/orders"
           >
             Orders
@@ -55,7 +55,7 @@ export default function Navigation() {
         </li>
         <li>
           <NavLink
-            className="p-2 px-4 rounded-full bg-brown-light text-brown hover:bg-brown hover:text-brown-light transition"
+            className="nav-item"
             to="/cart"
           >
             Cart
