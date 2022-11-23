@@ -1,5 +1,11 @@
 // import { useState, useEffect } from "react";
-import { BrowserRouter, Route, Routes, Navigate, Outlet } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 import { useAtom } from "jotai";
 import { tokenAtom, cartAtom } from "../lib/atoms";
 
@@ -17,7 +23,7 @@ const ProtectedRoute = ({ token, redirectPath = "/login" }) => {
   if (!token) {
     return <Navigate to={redirectPath} replace />;
   }
-  
+
   return <Outlet />;
 };
 
@@ -26,26 +32,8 @@ export default function App() {
   const [cart, setCart] = useAtom(cartAtom);
 
   // useEffect(() => {
+  // console.log("verify user");
   // });
-
-  const addToCart = (key) => {
-    let newCart = { ...cart };
-    newCart[key] = cart[key] + 1 || 1;
-    setCart(newCart);
-  };
-
-  const decrementCart = (key) => {
-    let newCart = { ...cart };
-    newCart[key] = cart[key] - 1 || 0;
-    if (newCart[key] <= 0) delete newCart[key];
-    setCart(newCart);
-  };
-
-  const removeFromCart = (key) => {
-    let newCart = { ...cart };
-    delete newCart[key];
-    setCart(newCart);
-  };
 
   return (
     <BrowserRouter>
@@ -62,18 +50,9 @@ export default function App() {
             <Route path="/products" element={<Products />} />
             <Route
               path="/product/:productId"
-              element={<Product addToCart={addToCart} />}
+              element={<Product />}
             />
-            <Route
-              path="/cart"
-              element={
-                <Cart
-                  addToCart={addToCart}
-                  decrementCart={decrementCart}
-                  removeFromCart={removeFromCart}
-                />
-              }
-            />
+            <Route path="/cart" element={<Cart />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

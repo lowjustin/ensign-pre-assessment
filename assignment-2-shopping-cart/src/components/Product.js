@@ -4,14 +4,14 @@ import { loadProductsAtom } from "../lib/atoms";
 import { formatPrice } from "../helpers";
 import LoadingError from "./LoadingError";
 import LoadingSpinner from "./LoadingSpinner";
+import { AddToCart } from "./CartFunctions";
 
-export default function Product(props) {
+export default function Product() {
   const [products] = useAtom(loadProductsAtom);
 
   const { productId } = useParams();
-  const { addToCart } = props;
 
-  const renderProduct = (product, addToCart) => {
+  const renderProduct = (product) => {
     const { id, image, price, title, description } = product;
     return (
       <div className="product md:flex border border-blue rounded p-8 gap-4">
@@ -31,12 +31,7 @@ export default function Product(props) {
           <div className="product-description mb-4">
             <p>{description}</p>
           </div>
-          <button
-            onClick={() => addToCart(id)}
-            className="rounded p-4 px-8 font-bold bg-brown text-white leading-none hover:bg-brown-light hover:text-brown transition"
-          >
-            Add to cart
-          </button>
+          <AddToCart index={id} label="Add to cart" circle={false} />
         </div>
       </div>
     );
@@ -46,7 +41,7 @@ export default function Product(props) {
     switch (products.state) {
       case "hasData":
         const product = products.data.find((p) => p.id === parseInt(productId));
-        return renderProduct(product, addToCart);
+        return renderProduct(product);
       case "hasError":
         return <LoadingError />;
       default:

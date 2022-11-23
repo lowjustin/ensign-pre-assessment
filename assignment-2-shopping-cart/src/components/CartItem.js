@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
+import { useAtom } from "jotai";
+import { cartAtom } from "../lib/atoms";
+import { AddToCart, DecrementCart, RemoveFromCart } from "./CartFunctions";
 import { formatPrice } from "../helpers";
 
 export default function CartItem(props) {
-  const { index, cart, addToCart, decrementCart, removeFromCart, product } =
-    props;
+  const { index, product } = props;
+  const [cart] = useAtom(cartAtom);
 
   return (
     <tr className="cart-item" key={index}>
@@ -14,31 +17,16 @@ export default function CartItem(props) {
         {formatPrice(product.price)}
       </td>
       <td className="py-4 border-b border-blue-light">
-        <button
-          className="rounded-full w-8 align-center font-bold bg-brown text-white leading-8 hover:bg-brown-light transition"
-          onClick={() => decrementCart(index)}
-        >
-          -
-        </button>
+        <DecrementCart index={index} />
       </td>
       <td className="cart-item-quantity align-center px-4 py-4 border-b border-blue-light">
         {cart[index]}
       </td>
       <td className="py-4 border-b border-blue-light">
-        <button
-          className="rounded-full w-8 align-center font-bold bg-brown text-white leading-8 hover:bg-brown-light transition"
-          onClick={() => addToCart(index)}
-        >
-          +
-        </button>
+        <AddToCart index={index} />
       </td>
       <td className="py-4 border-b border-blue-light">
-        <button
-          className="rounded p-2 font-bold bg-brown-light text-brown leading-none hover:bg-brown hover:text-brown-light transition"
-          onClick={() => removeFromCart(index)}
-        >
-          &times;
-        </button>
+        <RemoveFromCart index={index} />
       </td>
     </tr>
   );

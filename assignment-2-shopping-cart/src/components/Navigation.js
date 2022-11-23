@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import CartCount from "./CartCount";
+import { CartCount } from "./CartFunctions";
 
 export default function Navigation() {
   return (

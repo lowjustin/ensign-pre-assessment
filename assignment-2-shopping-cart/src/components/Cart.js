@@ -1,25 +1,37 @@
+import axios from "axios";
 import { useAtom } from "jotai";
-import { cartAtom, loadProductsAtom } from "../lib/atoms";
+import { cartAtom, loadProductsAtom, tokenAtom } from "../lib/atoms";
 import { formatPrice } from "../helpers";
 import CartItem from "./CartItem";
-import CartCount from "./CartCount";
+import { CartCount, calcTotal } from "./CartFunctions";
 import LoadingError from "./LoadingError";
 import LoadingSpinner from "./LoadingSpinner";
 
-export default function Cart(props) {
-  let { addToCart, decrementCart, removeFromCart } = props;
-
+export default function Cart() {
   const [cart] = useAtom(cartAtom);
+  const [token] = useAtom(tokenAtom);
   const [products] = useAtom(loadProductsAtom);
 
-  const calcTotal = (productsArr) => {
-    let total = 0.0;
-    total = Object.keys(cart).reduce((prevTotal, key) => {
-      const product = productsArr.find((p) => p.id === parseInt(key));
-      const count = cart[key];
-      return prevTotal + count * product.price;
-    }, 0);
-    return total;
+  const saveOrder = async () => {
+    try {
+      const config = {
+        headers: {
+          Authorization: `token ${token}`,
+        },
+      };
+      const data = {
+        cart,
+        token,
+      };
+      const response = await axios.post(
+        `http://localhost:4000/orders`,
+        data,
+        config
+      );
+      console.log(response.data);
+    } catch (err) {
+      throw new Error(err);
+    }
   };
 
   const renderCart = (productsArr) => {
@@ -46,10 +58,6 @@ export default function Cart(props) {
             <CartItem
               key={key}
               index={key}
-              addToCart={addToCart}
-              decrementCart={decrementCart}
-              removeFromCart={removeFromCart}
-              cart={cart}
               product={productsArr.find((p) => p.id === parseInt(key))}
             />
           ))}
@@ -70,9 +78,10 @@ export default function Cart(props) {
         <h4>
           Total:{" "}
           <span className="font-bold">
-            {formatPrice(calcTotal(productsArr))}
+            {formatPrice(calcTotal(cart, productsArr))}
           </span>
         </h4>
+        <button onClick={saveOrder}>Check out</button>
       </div>
     );
   };
