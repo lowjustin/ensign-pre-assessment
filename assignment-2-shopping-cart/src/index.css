@@ -30,6 +30,22 @@ body {
   @apply font-sans;
 }
 
+.alert {
+  @apply mb-4 p-2 text-sm border;
+}
+
+.alert-success {
+  @apply text-green bg-green-light border-green-medium;
+}
+
+.alert-error {
+  @apply text-red bg-red-light border-red-medium;
+}
+
+.alert-info {
+  @apply text-blue bg-blue-light border-blue-medium;
+}
+
 .card {
   @apply drop-shadow-lg bg-white;
 }
