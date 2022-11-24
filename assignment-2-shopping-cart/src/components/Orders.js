@@ -27,10 +27,10 @@ export default function Orders() {
       const response = await axios.get(`${process.env.REACT_APP_API_URL}/orders`, config);
       setOrders(response.data);
       setError("");
-    } catch (err) {
+    } catch (error) {
       setOrders([]);
-      setError(err);
-      throw new Error(err);
+      setError(error);
+      throw new Error(error);
     } finally {
       setLoading(false);
     }

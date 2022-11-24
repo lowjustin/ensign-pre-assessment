@@ -26,9 +26,10 @@ export default function Register() {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/users`, user);
       setData(response.data);
       setError(null);
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      setError(error);
       setData("");
+      throw new Error(error);
     } finally {
       setLoading(false);
     }

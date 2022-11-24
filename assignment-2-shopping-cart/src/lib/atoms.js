@@ -15,7 +15,7 @@ const productsAtom = atomWithDefault(async (get) => {
       `${process.env.REACT_APP_API_URL}/products?limit=12`, config
     );
     return response.data;
-  } catch (err) {
+  } catch (error) {
     throw new Error(err);
   }
 });

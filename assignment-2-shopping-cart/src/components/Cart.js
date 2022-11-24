@@ -7,8 +7,7 @@ import { CartCount, calcTotal } from "./CartFunctions";
 import LoadingError from "./LoadingError";
 import LoadingSpinner from "./LoadingSpinner";
 
-export default function Cart(props) {
-  const { user } = props;
+export default function Cart() {
   const [cart] = useAtom(cartAtom);
   const [products] = useAtom(loadProductsAtom);
 
@@ -25,8 +24,8 @@ export default function Cart(props) {
         data,
         config
       );
-      console.log(response.data);
-    } catch (err) {
+      return response;
+    } catch (error) {
       throw new Error(err);
     }
   };

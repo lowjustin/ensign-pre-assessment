@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import { useAtom } from "jotai";
 import { userAtom } from "../lib/atoms";
-import { fetchProducts } from "../helpers";
 import axios from "axios";
 import LoadingSpinner from "./LoadingSpinner";
 
@@ -33,8 +32,9 @@ export default function Login() {
       setUser({ userId, username, token });
       setError(null);
     } catch (error) {
-      setError(error.response.data);
+      setError(error);
       setUser("");
+      throw new Error(error);
     } finally {
       setLoading(false);
     }
