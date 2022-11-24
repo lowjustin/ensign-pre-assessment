@@ -25,6 +25,10 @@ code {
     monospace;
 } */
 
+.card {
+  @apply drop-shadow-lg bg-white p-16;
+}
+
 .title-page {
   @apply text-3xl;
 }
@@ -38,7 +42,30 @@ code {
 }
 
 .nav-item {
-  @apply text-sm font-bold uppercase transition-opacity duration-300 hover:opacity-60;
+  @apply text-sm uppercase transition-opacity duration-300 hover:opacity-60;
+}
+
+.nav-main .nav-item {
+  @apply font-bold;
+}
+
+.order h4,
+.order h5 {
+  @apply text-sm mb-4;
+}
+
+.order-data-title {
+  @apply block uppercase text-sm text-gray-light;
+}
+
+.order-items thead td,
+.cart-items thead td {
+  @apply pt-0 uppercase text-sm text-gray-light;
+}
+
+.order-items td,
+.cart-items td {
+  @apply py-4 border-b border-gray-light;
 }
 
 .button {
