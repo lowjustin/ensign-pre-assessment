@@ -16,7 +16,7 @@ const productsAtom = atomWithDefault(async (get) => {
     );
     return response.data;
   } catch (error) {
-    throw new Error(err);
+    throw new Error(error);
   }
 });
 const loadProductsAtom = loadable(productsAtom);

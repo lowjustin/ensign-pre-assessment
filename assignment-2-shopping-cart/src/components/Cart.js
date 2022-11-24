@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useAtom } from "jotai";
-import { cartAtom, loadProductsAtom } from "../lib/atoms";
+import { cartAtom, loadProductsAtom, userAtom } from "../lib/atoms";
 import { formatPrice } from "../helpers";
 import CartItem from "./CartItem";
 import { CartCount, calcTotal } from "./CartFunctions";
@@ -8,6 +8,8 @@ import LoadingError from "./LoadingError";
 import LoadingSpinner from "./LoadingSpinner";
 
 export default function Cart() {
+  // shared state
+  const [user] = useAtom(userAtom);
   const [cart] = useAtom(cartAtom);
   const [products] = useAtom(loadProductsAtom);
 
@@ -26,7 +28,7 @@ export default function Cart() {
       );
       return response;
     } catch (error) {
-      throw new Error(err);
+      throw new Error(error);
     }
   };
 
