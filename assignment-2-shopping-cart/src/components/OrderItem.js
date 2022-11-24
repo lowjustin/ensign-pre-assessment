@@ -5,13 +5,13 @@ export default function OrderItem(props) {
 
   return (
     <tr className="order-item" key={index}>
-      <td className="order-item-title py-4 border-b border-blue-light">
+      <td className="order-item-title">
         {product.title}
       </td>
-      <td className="order-item-price py-4 border-b border-blue-light">
+      <td className="order-item-price">
         {formatPrice(product.price)}
       </td>
-      <td className="order-item-price py-4 border-b border-blue-light">
+      <td className="order-item-price text-right">
         {quantity}
       </td>
     </tr>

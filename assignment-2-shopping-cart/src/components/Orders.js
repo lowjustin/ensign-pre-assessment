@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { format, parseISO } from "date-fns";
 import axios from "axios";
 import { useAtom } from "jotai";
 import { loadProductsAtom, userAtom } from "../lib/atoms";
@@ -10,7 +11,7 @@ import { formatPrice } from "../helpers";
 
 export default function Orders() {
   // shared state
-  const [user, setUser] = useAtom(userAtom);
+  const [user] = useAtom(userAtom);
   const [products] = useAtom(loadProductsAtom);
 
   const [error, setError] = useState("");
@@ -24,7 +25,10 @@ export default function Orders() {
           Authorization: `token ${user.token}`,
         },
       };
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/orders`, config);
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/orders`,
+        config
+      );
       setOrders(response.data);
       setError("");
     } catch (error) {
@@ -41,38 +45,51 @@ export default function Orders() {
   }, []);
 
   const renderOrders = () => {
-    console.log(orders);
     if (orders.length === 0) {
       return <div className="orders-empty">You have no orders</div>;
     }
 
     return (
-      <ul className="orders-list">
+      <ul className="orders-list grid grid-cols-2 gap-8">
         {Object.keys(orders).map((key) => (
-          <li className="order-item" orderkey={key}>
-            <h4>Order ID: {orders[key].id}</h4>
-            <h5>Order date: {orders[key].createdAt}</h5>
-            <h6>Items</h6>
-            <table className="order-item-items table">
-              <thead>
-                <tr>
-                  <td>Product name</td>
-                  <td>Price</td>
-                  <td>Quantity</td>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(orders[key].cart).map((cartKey) => (
-                  <OrderItem
-                    key={cartKey}
-                    index={cartKey}
-                    product={products.data.find((p) => p.id === parseInt(cartKey))}
-                    quantity={orders[key].cart[cartKey]}
-                  />
-                ))}
-              </tbody>
-            </table>
-            <h5>Total: {formatPrice(calcTotal(orders[key].cart, products.data))}</h5>
+          <li className="order card flex" key={key}>
+            <div className="order-data w-1/4">
+              <h4>
+                <span className="order-data-title">Order ID</span>
+                {orders[key].id}
+              </h4>
+              <h5>
+                <span className="order-data-title">Order date</span>
+                {format(parseISO(orders[key].createdAt), "yyyy/mm/dd")}
+              </h5>
+              <h5>
+                <span className="order-data-title">Total</span>
+                {formatPrice(calcTotal(orders[key].cart, products.data))}
+              </h5>
+            </div>
+            <div className="order-items">
+              <table className="order-items-table table table-auto w-full">
+                <thead>
+                  <tr>
+                    <td>Product name</td>
+                    <td>Price</td>
+                    <td className="text-right">Quantity</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.keys(orders[key].cart).map((cartKey) => (
+                    <OrderItem
+                      key={cartKey}
+                      index={cartKey}
+                      product={products.data.find(
+                        (p) => p.id === parseInt(cartKey)
+                      )}
+                      quantity={orders[key].cart[cartKey]}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </li>
         ))}
       </ul>
@@ -81,7 +98,7 @@ export default function Orders() {
 
   return (
     <div className="orders">
-      <h1 className="title-page">Orders</h1>
+      <h1 className="title-page text-center">Orders</h1>
       {error ? <LoadingError /> : ""}
       {loading ? <LoadingSpinner /> : renderOrders()}
     </div>
