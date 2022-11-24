@@ -23,7 +23,7 @@ export default function Register() {
     };
 
     try {
-      const response = await axios.post(`http://localhost:4000/users`, user);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/users`, user);
       setData(response.data);
       setError(null);
     } catch (err) {

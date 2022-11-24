@@ -31,7 +31,6 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      {user ? "successfully logged in" : ""}
       <div className="container mb-2">
         <Header />
       </div>
@@ -39,17 +38,17 @@ export default function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home user={user} setUser={setUser} />}
+            element={<Home />}
           />
           <Route
             path="/logout"
-            element={<Logout user={user} setUser={setUser} />}
+            element={<Logout />}
           />
           <Route element={<ProtectedRoute user={user} />}>
-            <Route path="/products" element={<Products user={user} />} />
-            <Route path="/product/:productId" element={<Product user={user} />} />
-            <Route path="/orders" element={<Orders user={user} />} />
-            <Route path="/cart" element={<Cart user={user} />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/product/:productId" element={<Product />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/cart" element={<Cart />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

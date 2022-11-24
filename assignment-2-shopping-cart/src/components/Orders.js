@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAtom } from "jotai";
-import { loadProductsAtom } from "../lib/atoms";
+import { loadProductsAtom, userAtom } from "../lib/atoms";
 import LoadingError from "./LoadingError";
 import LoadingSpinner from "./LoadingSpinner";
 import OrderItem from "./OrderItem";
 import { calcTotal } from "./CartFunctions";
 import { formatPrice } from "../helpers";
 
-export default function Orders(props) {
-  const { user } = props;
+export default function Orders() {
+  // shared state
+  const [user, setUser] = useAtom(userAtom);
   const [products] = useAtom(loadProductsAtom);
+
   const [error, setError] = useState("");
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,7 +24,7 @@ export default function Orders(props) {
           Authorization: `token ${user.token}`,
         },
       };
-      const response = await axios.get(`http://localhost:4000/orders`, config);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/orders`, config);
       setOrders(response.data);
       setError("");
     } catch (err) {

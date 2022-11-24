@@ -1,10 +1,13 @@
 import { useRef, useState } from "react";
+import { useAtom } from "jotai";
+import { userAtom } from "../lib/atoms";
+import { fetchProducts } from "../helpers";
 import axios from "axios";
 import LoadingSpinner from "./LoadingSpinner";
 
-export default function Login(props) {
-  // state from parents
-  const { user, setUser } = props;
+export default function Login() {
+  // shared state
+  const [user, setUser] = useAtom(userAtom);
 
   // internal state
   const [error, setError] = useState("");
@@ -25,14 +28,12 @@ export default function Login(props) {
     };
 
     try {
-      const response = await axios.post(`http://localhost:4000/login`, payload);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, payload);
       const { userId, username, token } = response.data;
       setUser({ userId, username, token });
       setError(null);
-      // console.log("success", response.data);
-    } catch (err) {
-      console.log("error", err);
-      // setError(err.response.data);
+    } catch (error) {
+      setError(error.response.data);
       setUser("");
     } finally {
       setLoading(false);

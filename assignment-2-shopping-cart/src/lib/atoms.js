@@ -12,7 +12,7 @@ const productsAtom = atomWithDefault(async (get) => {
       'Authorization': `token ${user.token}`
     }}
     const response = await axios.get(
-      `http://localhost:4000/products?limit=12`, config
+      `${process.env.REACT_APP_API_URL}/products?limit=12`, config
     );
     return response.data;
   } catch (err) {

@@ -21,7 +21,7 @@ export default function Cart(props) {
       };
       const data = { cart };
       const response = await axios.post(
-        `http://localhost:4000/orders`,
+        `${process.env.REACT_APP_API_URL}/orders`,
         data,
         config
       );

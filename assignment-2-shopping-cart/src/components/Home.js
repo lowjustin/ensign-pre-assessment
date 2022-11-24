@@ -1,8 +1,14 @@
+import { useAtom } from "jotai";
+import { userAtom } from "../lib/atoms";
 import Login from "./Login";
 import Register from "./Register";
 
 export default function Home(props) {
-  const { isLoggedIn = false, user, setUser } = props;
+  const { isLoggedIn = false } = props;
+  
+  // shared state
+  const [user, setUser] = useAtom(userAtom);
+
   return (
     <div className="home">
       <h1 className="title-page">Home</h1>

@@ -1,7 +1,12 @@
+import { useAtom } from "jotai";
+import { userAtom } from "../lib/atoms";
 import { NavLink } from "react-router-dom";
 import { CartCount } from "./CartFunctions";
 
 export default function Navigation() {
+  // shared state
+  const [user, setUser] = useAtom(userAtom);
+  
   return (
     <nav>
       <ul className="flex gap-4">

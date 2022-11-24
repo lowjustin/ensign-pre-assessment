@@ -1,6 +1,8 @@
+import { useAtom } from "jotai";
+import { userAtom } from "../lib/atoms";
 export default function Logout(props) {
-  // state from parents
-  const { user, setUser } = props;
+  // shared state
+  const [user, setUser] = useAtom(userAtom);
 
   if (user) setUser("");
 
