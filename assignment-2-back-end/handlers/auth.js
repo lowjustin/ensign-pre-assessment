@@ -1,13 +1,10 @@
-const jwt = require("jsonwebtoken");
+const { verifyToken } = require("../helpers");
 
 module.exports = async (req, res, next) => {
   try {
     const token = await req.headers.authorization.split(" ")[1];
-
-    const decodedToken = await jwt.verify(token, "RANDOM-TOKEN");
-
-    const user = await decodedToken;
-
+    const user = await verifyToken(token);
+    console.log(user);
     req.user = user;
     next();
   } catch (error) {
