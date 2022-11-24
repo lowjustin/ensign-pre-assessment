@@ -5,7 +5,7 @@ const Order = db.define(
   "Order",
   {
     userId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       required: true,
     },
     cart: {
