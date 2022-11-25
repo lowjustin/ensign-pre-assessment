@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useAtom } from "jotai";
 import { userAtom } from "../lib/atoms";
 import axios from "axios";
+import Alert from "./Alert";
 import LoadingSpinner from "./LoadingSpinner";
 
 export default function Login() {
@@ -34,7 +35,6 @@ export default function Login() {
     } catch (error) {
       setError(error);
       setUser("");
-      throw new Error(error);
     } finally {
       setLoading(false);
     }
@@ -44,7 +44,8 @@ export default function Login() {
     <div className="user-login">
       <h3 className="title-section">Login</h3>
       <form onSubmit={loginUser}>
-        <div>
+        {error ? <Alert type="error" message="Incorrect username or password" /> : ""}
+        <div className="mb-4">
           <label htmlFor="username">Username</label>
           <input
             className="input"
@@ -55,7 +56,7 @@ export default function Login() {
             required
           />
         </div>
-        <div>
+        <div className="mb-4">
           <label htmlFor="password">Password</label>
           <input
             className="input"
@@ -68,7 +69,6 @@ export default function Login() {
           Submit
         </button>
       </form>
-      {error ? JSON.stringify(error) : ""}
       {loading ? <LoadingSpinner /> : ""}
     </div>
   );

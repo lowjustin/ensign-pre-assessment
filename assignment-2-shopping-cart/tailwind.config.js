@@ -23,6 +23,7 @@ module.exports = {
         gray: "#666",
         "gray-light": "#ccc",
         "gray-dark": "#333",
+        "gray-extralight": "#efefef",
       },
       fontFamily: {
         sans: ["Open Sans", ...defaultTheme.fontFamily.sans],

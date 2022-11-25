@@ -10,22 +10,22 @@ export default function CartItem(props) {
 
   return (
     <tr className="cart-item" key={index}>
-      <td className="cart-item-title py-4 border-b border-blue-light">
+      <td className="cart-item-title">
         <Link to={`/product/${index}`}>{product.title}</Link>
       </td>
-      <td className="cart-item-price py-4 border-b border-blue-light">
+      <td className="cart-item-price">
         {formatPrice(product.price)}
       </td>
-      <td className="py-4 border-b border-blue-light">
+      <td className="">
         <DecrementCart index={index} />
       </td>
-      <td className="cart-item-quantity align-center px-4 py-4 border-b border-blue-light">
+      <td className="cart-item-quantity align-center px-4">
         {cart[index]}
       </td>
-      <td className="py-4 border-b border-blue-light">
+      <td className="">
         <AddToCart index={index} />
       </td>
-      <td className="py-4 border-b border-blue-light">
+      <td className="">
         <RemoveFromCart index={index} />
       </td>
     </tr>

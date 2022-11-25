@@ -27,7 +27,7 @@ code {
 } */
 
 body {
-  @apply font-sans;
+  @apply font-sans bg-gray-extralight text-gray-dark;
 }
 
 .alert {
@@ -47,19 +47,27 @@ body {
 }
 
 .card {
-  @apply drop-shadow-lg bg-white;
+  @apply rounded bg-white;
+}
+
+.outline-card {
+  @apply rounded bg-white;
+}
+
+.outline-card:hover {
+  @apply drop-shadow-lg transition duration-300;
 }
 
 .title-page {
-  @apply font-poppins font-extrabold italic text-9xl text-gray-light -mt-32 mb-8 uppercase;
+  @apply font-poppins font-extrabold italic text-9xl text-gray-light -ml-4 -mt-32 mb-8 uppercase;
 }
 
 .title-feature {
-  @apply text-2xl;
+  @apply mb-2 text-xl text-gray-light;
 }
 
 .title-section {
-  @apply uppercase font-bold;
+  @apply mb-4 uppercase font-bold;
 }
 
 .nav-item {
@@ -68,6 +76,10 @@ body {
 
 .nav-main .nav-item {
   @apply font-bold;
+}
+
+.cart-count {
+  @apply px-2 py-1 ml-2 rounded bg-gray-light text-white;
 }
 
 .cart h4,
@@ -92,7 +104,19 @@ body {
 }
 
 .button {
-  @apply block px-8 py-2 uppercase font-bold text-white bg-gray transition-opacity duration-300 hover:opacity-60;
+  @apply block px-8 py-2 rounded uppercase font-bold text-white bg-gray transition-opacity duration-300 hover:opacity-60;
+}
+
+.button-circle {
+  @apply rounded-full p-0 w-8 leading-8;
+}
+
+.button-remove {
+  @apply p-0 w-8 leading-8 bg-gray-light;
+}
+
+label {
+  @apply block mb-1;
 }
 
 .input {
