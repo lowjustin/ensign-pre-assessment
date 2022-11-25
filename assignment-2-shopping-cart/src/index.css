@@ -31,7 +31,7 @@ body {
 }
 
 .alert {
-  @apply mb-4 p-2 text-sm border;
+  @apply mb-4 p-2 text-sm rounded border;
 }
 
 .alert-success {
@@ -107,12 +107,16 @@ body {
   @apply block px-8 py-2 rounded uppercase font-bold text-white bg-gray transition-opacity duration-300 hover:opacity-60;
 }
 
+.button-outline {
+  @apply bg-white border border-gray-light text-gray-light;
+}
+
 .button-circle {
   @apply rounded-full p-0 w-8 leading-8;
 }
 
 .button-remove {
-  @apply p-0 w-8 leading-8 bg-gray-light;
+  @apply p-0 w-8 ml-8 leading-8 bg-gray-light;
 }
 
 label {
