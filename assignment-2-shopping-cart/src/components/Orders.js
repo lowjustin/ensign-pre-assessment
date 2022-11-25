@@ -6,8 +6,7 @@ import { loadProductsAtom, userAtom } from "../lib/atoms";
 import LoadingError from "./LoadingError";
 import LoadingSpinner from "./LoadingSpinner";
 import OrderItem from "./OrderItem";
-import { calcTotal } from "./CartFunctions";
-import { formatPrice } from "../helpers";
+import { calcTotal, formatPrice } from "../helpers";
 
 export default function Orders() {
   // shared state

@@ -2,8 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useAtom } from "jotai";
 import { cartAtom, loadProductsAtom, userAtom } from "../lib/atoms";
-import { formatPrice } from "../helpers";
-import { CartCount, calcTotal } from "./CartFunctions";
+import { calcTotal, formatPrice } from "../helpers";
+import { CartCount } from "./CartFunctions";
 
 import Alert from "./Alert";
 import CartItem from "./CartItem";
