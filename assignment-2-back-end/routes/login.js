@@ -1,15 +1,18 @@
-var bcrypt = require("bcryptjs");
 var express = require("express");
-var jwt = require("jsonwebtoken");
 var router = express.Router();
-var { User } = require("../models/User");
-var auth = require("../handlers/auth");
+var bcrypt = require("bcryptjs");
+var jwt = require("jsonwebtoken");
 
+var { User } = require("../models/User");
+
+// handle login and create token if valid
 router.post("/", async (req, res) => {
   const { username, password } = req.body;
+  let errorMessage = "Incorrect username or password";
+
   if (!username) {
     return res.status(401).send({
-      error: "Incorrect username or password",
+      error: errorMessage,
     });
   }
 
@@ -19,7 +22,7 @@ router.post("/", async (req, res) => {
       .then((passwordCheck) => {
         if (!passwordCheck) {
           return res.status(401).send({
-            error: "Incorrect username or password",
+            error: errorMessage,
           });
         }
 
@@ -29,31 +32,22 @@ router.post("/", async (req, res) => {
             username: user.username,
           },
           "RANDOM-TOKEN",
-          { expiresIn: 300 }
+          { expiresIn: "365d" }
         );
 
-        res.status(200).send({
+        return res.status(200).json({
           message: "Login Successful",
           userId: user.id,
           username: user.username,
           token,
         });
       })
-      .catch((error) => {
-        res.status(401).send({
-          error: "Incorrect username or password",
+      .catch((err) => {
+        return res.status(401).json({
+          error: errorMessage,
         });
       });
   });
-});
-
-router.get("/free", (req, res) => {
-  res.json({ message: "You are free to access me anytime" });
-});
-
-// authentication endpoint
-router.get("/auth", auth, (req, res) => {
-  res.json({ message: "You are authorized to access me", user: req.user });
 });
 
 module.exports = router;
