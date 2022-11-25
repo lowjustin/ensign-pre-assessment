@@ -1,9 +1,11 @@
+import { useState } from "react";
 import axios from "axios";
 import { useAtom } from "jotai";
 import { cartAtom, loadProductsAtom, userAtom } from "../lib/atoms";
 import { formatPrice } from "../helpers";
 import CartItem from "./CartItem";
 import { CartCount, calcTotal } from "./CartFunctions";
+import Alert from "./Alert";
 import LoadingError from "./LoadingError";
 import LoadingSpinner from "./LoadingSpinner";
 
@@ -12,6 +14,9 @@ export default function Cart() {
   const [user] = useAtom(userAtom);
   const [cart, setCart] = useAtom(cartAtom);
   const [products] = useAtom(loadProductsAtom);
+
+  // internal state
+  const [orderSaved, setOrderSaved] = useState(false);
 
   const saveOrder = async () => {
     try {
@@ -27,6 +32,7 @@ export default function Cart() {
         config
       );
       setCart({});
+      setOrderSaved(true);
       return response;
     } catch (error) {
       throw new Error(error);
@@ -96,6 +102,7 @@ export default function Cart() {
             </div>
             <div className="card p-8 w-1/4">
               <h3 className="title-section">Order summary</h3>
+              {orderSaved ? <Alert type="success" message="Order saved" /> : ""}
               {renderSummary(products.data)}
             </div>
           </div>

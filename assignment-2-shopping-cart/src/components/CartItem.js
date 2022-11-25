@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAtom } from "jotai";
 import { cartAtom } from "../lib/atoms";
-import { AddToCart, DecrementCart, RemoveFromCart } from "./CartFunctions";
+import { IncrementCart, DecrementCart, RemoveFromCart } from "./CartFunctions";
 import { formatPrice } from "../helpers";
 
 export default function CartItem(props) {
@@ -23,7 +23,7 @@ export default function CartItem(props) {
         {cart[index]}
       </td>
       <td className="">
-        <AddToCart index={index} />
+        <IncrementCart index={index} />
       </td>
       <td className="">
         <RemoveFromCart index={index} />

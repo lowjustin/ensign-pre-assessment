@@ -1,11 +1,11 @@
 import { useAtom } from "jotai";
 import { cartAtom } from "../lib/atoms";
 
-export function AddToCart(props) {
+export function IncrementCart(props) {
   const { index, label = "+", circle = true } = props;
   const [cart, setCart] = useAtom(cartAtom);
 
-  const addToCart = () => {
+  const incrementCart = () => {
     let newCart = { ...cart };
     newCart[index] = cart[index] + 1 || 1;
     setCart(newCart);
@@ -13,12 +13,8 @@ export function AddToCart(props) {
 
   return (
     <button
-      className={
-        circle
-          ? "button button-circle"
-          : "button"
-      }
-      onClick={() => addToCart()}
+      className="button button-circle"
+      onClick={() => incrementCart()}
     >
       {label}
     </button>
