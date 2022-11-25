@@ -28,15 +28,15 @@ export default function Product() {
   const renderProduct = (product) => {
     const { image, price, title, description } = product;
     return (
-      <div className="product card w-3/4 mx-auto flex p-16 gap-8">
-        <div className="product-image grow h-96 md:max-h-96 overflow-hidden mb-8 md:mb-0">
+      <div className="product card flex p-16 gap-8">
+        <div className="product-image w-1/2 overflow-hidden mb-8">
           <img
-            className="object-contain object-center w-full h-full"
+            className="object-contain object-center w-full h-full max-w-sm max-h-96 mx-auto"
             src={image}
             alt=""
           />
         </div>
-        <div className="product-data md:w-2/3 text-gray-dark flex flex-col">
+        <div className="product-data w-1/2 text-gray-dark flex flex-col">
           <div className="product-title text-3xl text-blue-dark mb-4">
             {title}
           </div>
@@ -47,9 +47,9 @@ export default function Product() {
             <p>{description}</p>
           </div>
           {addedToCart ? <Alert type="success" message="Added to cart" /> : ""}
-          <div className="flex justify-between">
-            <div className="product-cart-button">
-              <button className="button" onClick={addToCart}>
+          <div className="flex justify-between gap-8">
+            <div className="product-cart-button grow">
+              <button className="button w-full" onClick={addToCart}>
                 Add to cart
               </button>
             </div>
