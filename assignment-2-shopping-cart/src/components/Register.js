@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import axios from "axios";
+import Alert from "./Alert";
 import LoadingSpinner from "./LoadingSpinner";
 
 export default function Register() {
@@ -7,6 +8,11 @@ export default function Register() {
   const [data, setData] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  
+  const registeredState = {
+    type: "success",
+    message: "Registered successfully"
+  }
 
   // internal refs
   const usernameRef = useRef("");
@@ -29,7 +35,6 @@ export default function Register() {
     } catch (error) {
       setError(error);
       setData("");
-      throw new Error(error);
     } finally {
       setLoading(false);
     }
@@ -39,7 +44,9 @@ export default function Register() {
     <div className="user-register">
       <h3 className="title-section">Register user</h3>
       <form onSubmit={registerUser}>
-        <div>
+        {error ? <Alert type="error" message="Could not register new user" /> : ""}
+        {data ? <Alert type="success" message="Registered successfully" /> : ""}
+        <div className="mb-4">
           <label htmlFor="username">Username</label>
           <input
             className="input"
@@ -50,7 +57,7 @@ export default function Register() {
             required
           />
         </div>
-        <div>
+        <div className="mb-4">
           <label htmlFor="password">Password</label>
           <input
             className="input"
@@ -63,8 +70,6 @@ export default function Register() {
           Submit
         </button>
       </form>
-      {data ? JSON.stringify(data) : ""}
-      {error ? JSON.stringify(error) : ""}
       {loading ? <LoadingSpinner /> : ""}
     </div>
   );

@@ -1,10 +1,16 @@
+import { useLocation } from "react-router-dom";
 import { useAtom } from "jotai";
 import { loadProductsAtom } from "../lib/atoms";
 import LoadingError from "./LoadingError";
 import LoadingSpinner from "./LoadingSpinner";
 import ProductItem from "./ProductItem";
+import Alert from "./Alert";
 
 export default function Products() {
+  // state from router
+  const { state } = useLocation();
+
+  // shared state
   const [products] = useAtom(loadProductsAtom);
 
   const renderContent = () => {
@@ -20,7 +26,7 @@ export default function Products() {
 
   const renderProductItems = (items) => {
     return (
-      <ul className="products-list grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <ul className="products-list grid grid-cols-2 md:grid-cols-3 gap-8">
         {Object.keys(items).map((key) => (
           <ProductItem key={key} index={key} product={items[key]} />
         ))}
@@ -31,6 +37,9 @@ export default function Products() {
   return (
     <div className="products">
       <h1 className="title-page">Products</h1>
+      {state ? (
+        <Alert type={state.type} message={state.message} />
+      ) : null}
       {renderContent()}
     </div>
   );
