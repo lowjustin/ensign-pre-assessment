@@ -8,19 +8,21 @@ export default function Navigation() {
   const [user, setUser] = useAtom(userAtom);
 
   return (
-    <div>
-      <nav className="nav-home">
-        <ul className="flex gap-4">
-          <li>
-            <NavLink className="nav-item" to="/">
-              Home
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
+    <div className="flex gap-8">
+      {!user ? (
+        <nav className="nav-home">
+          <ul className="flex gap-8">
+            <li>
+              <NavLink className="nav-item" to="/">
+                Register/Login
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+      ) : null}
       {user ? (
         <nav className="nav-main">
-          <ul className="flex gap-4">
+          <ul className="flex gap-8">
             <li>
               <NavLink className="nav-item" to="/products">
                 Products
@@ -35,23 +37,17 @@ export default function Navigation() {
             <li>
               <NavLink className="nav-item" to="/cart">
                 Cart
-                {<CartCount /> ? (
-                  <span className="p-1 rounded bg-brown text-white">
-                    <CartCount />
-                  </span>
-                ) : (
-                  ""
-                )}
+                <span className="cart-count">
+                  <CartCount />
+                </span>
               </NavLink>
             </li>
           </ul>
         </nav>
-      ) : (
-        ""
-      )}
+      ) : null}
       {user ? (
         <nav className="nav-utils">
-          <ul className="flex gap-4">
+          <ul className="flex gap-8">
             <li>
               <NavLink className="nav-item" to="/logout">
                 Logout
@@ -59,9 +55,7 @@ export default function Navigation() {
             </li>
           </ul>
         </nav>
-      ) : (
-        ""
-      )}
+      ) : null}
     </div>
   );
 }
