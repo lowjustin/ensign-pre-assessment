@@ -65,7 +65,7 @@ export default function Orders() {
                   {formatPrice(calcTotal(orders[key].cart, products.data))}
                 </h5>
               </div>
-              <div className="order-items grow">
+              <div className="order-items w-3/4">
                 <table className="order-items-table table table-auto w-full">
                   <thead>
                     <tr>
