@@ -15,8 +15,8 @@ export function AddToCart(props) {
     <button
       className={
         circle
-          ? "rounded-full w-8 align-center font-bold bg-brown text-white leading-8 hover:bg-brown-light transition"
-          : "rounded p-4 px-8 font-bold bg-brown text-white leading-none hover:bg-brown-light hover:text-brown transition"
+          ? "button button-circle"
+          : "button"
       }
       onClick={() => addToCart()}
     >
@@ -38,7 +38,7 @@ export function DecrementCart(props) {
 
   return (
     <button
-      className="rounded-full w-8 align-center font-bold bg-brown text-white leading-8 hover:bg-brown-light transition"
+      className="button button-circle"
       onClick={() => decrementCart()}
     >
       {label}
@@ -58,7 +58,7 @@ export function RemoveFromCart(props) {
 
   return (
     <button
-      className="rounded p-2 font-bold bg-brown-light text-brown leading-none hover:bg-brown hover:text-brown-light transition"
+      className="button button-remove"
       onClick={() => removeFromCart()}
     >
       {label}

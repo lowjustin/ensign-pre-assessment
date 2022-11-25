@@ -10,7 +10,7 @@ import LoadingSpinner from "./LoadingSpinner";
 export default function Cart() {
   // shared state
   const [user] = useAtom(userAtom);
-  const [cart] = useAtom(cartAtom);
+  const [cart, setCart] = useAtom(cartAtom);
   const [products] = useAtom(loadProductsAtom);
 
   const saveOrder = async () => {
@@ -26,6 +26,7 @@ export default function Cart() {
         data,
         config
       );
+      setCart({});
       return response;
     } catch (error) {
       throw new Error(error);
@@ -40,15 +41,13 @@ export default function Cart() {
     }
 
     return (
-      <table className="cart-items table table-auto w-full ">
+      <table className="cart-items table table-auto w-full">
         <thead>
           <tr>
-            <td className="py-4 border-b border-blue font-bold">Title</td>
-            <td className="py-4 border-b border-blue font-bold">Price</td>
-            <td className="py-4 border-b border-blue font-bold" colSpan="3">
-              Quantity
-            </td>
-            <td className="py-4 border-b border-blue"></td>
+            <td>Title</td>
+            <td>Price</td>
+            <td colSpan="3">Quantity</td>
+            <td></td>
           </tr>
         </thead>
         <tbody>
@@ -66,15 +65,15 @@ export default function Cart() {
 
   const renderSummary = (productsArr) => {
     return (
-      <div className="order-summary">
+      <div className="order-summary flex flex-col">
         <h4>
-          Number of items:{" "}
+          <span className="cart-data-title">Number of items</span>
           <span className="font-bold">
             <CartCount />
           </span>
         </h4>
         <h4>
-          Total:{" "}
+          <span className="cart-data-title">Total</span>
           <span className="font-bold">
             {formatPrice(calcTotal(cart, productsArr))}
           </span>
@@ -90,12 +89,12 @@ export default function Cart() {
     switch (products.state) {
       case "hasData":
         return (
-          <div className="md:flex border border-blue rounded">
-            <div className="grow p-8">
+          <div className="flex gap-8">
+            <div className="card p-8 grow">
               <h3 className="title-section">Items</h3>
               {renderCart(products.data)}
             </div>
-            <div className="md:w-1/3 bg-blue-light p-8 text-gray-dark">
+            <div className="card p-8 w-1/4">
               <h3 className="title-section">Order summary</h3>
               {renderSummary(products.data)}
             </div>
