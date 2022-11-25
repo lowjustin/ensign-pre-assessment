@@ -1,27 +1,36 @@
-const express = require("express");
-const router = express.Router();
-const { User } = require("../models/User");
-const { createUser, createUserTable } = require("../controllers/User");
+var express = require("express");
+var router = express.Router();
+
+var { createUser, createUserTable } = require("../controllers/User");
 
 // create table
-router.get("/createTable", async (req, res) => {
-  if (createUserTable()) {
-    res.send("The table for the User model was just (re)created!");
+router.get("/createUserTable", async (req, res) => {
+  try {
+    await createUserTable();
+    res.send("The table for the User model was just created");
+  } catch (err) {
+    console.error(err);
   }
 });
 
+// create user
 router.post("/", async (req, res) => {
   const { username, password } = req.body;
 
   if (!username) {
-    return res.status(400).send({
+    return res.status(400).json({
       error: "Missing username",
     });
   }
 
-  const user = await createUser(username, password);
-  // console.log(user.toJSON());
-  res.json(user);
+  try {
+    const user = await createUser(username, password);
+    return res.status(200).json(user);
+  } catch (err) {
+    return res.status(500).json({
+      error: "Could not create user"
+    });
+  }
 });
 
 module.exports = router;
