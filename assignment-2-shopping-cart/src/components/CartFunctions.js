@@ -1,8 +1,7 @@
 import { useAtom } from "jotai";
 import { cartAtom } from "../lib/atoms";
 
-export function IncrementCart(props) {
-  const { index, label = "+", circle = true } = props;
+export function IncrementCart({ index, label = "+" }) {
   const [cart, setCart] = useAtom(cartAtom);
 
   const incrementCart = () => {
@@ -12,17 +11,13 @@ export function IncrementCart(props) {
   };
 
   return (
-    <button
-      className="button button-circle"
-      onClick={() => incrementCart()}
-    >
+    <button className="button button-circle" onClick={() => incrementCart()}>
       {label}
     </button>
   );
 }
 
-export function DecrementCart(props) {
-  const { index, label = "-" } = props;
+export function DecrementCart({ index, label = "-" }) {
   const [cart, setCart] = useAtom(cartAtom);
 
   const decrementCart = () => {
@@ -33,17 +28,13 @@ export function DecrementCart(props) {
   };
 
   return (
-    <button
-      className="button button-circle"
-      onClick={() => decrementCart()}
-    >
+    <button className="button button-circle" onClick={() => decrementCart()}>
       {label}
     </button>
   );
 }
 
-export function RemoveFromCart(props) {
-  const { index, label = "×" } = props;
+export function RemoveFromCart({ index, label = "×" }) {
   const [cart, setCart] = useAtom(cartAtom);
 
   const removeFromCart = () => {
@@ -53,10 +44,7 @@ export function RemoveFromCart(props) {
   };
 
   return (
-    <button
-      className="button button-remove"
-      onClick={() => removeFromCart()}
-    >
+    <button className="button button-remove" onClick={() => removeFromCart()}>
       {label}
     </button>
   );

@@ -5,7 +5,7 @@ import { CartCount } from "./CartFunctions";
 
 export default function Navigation() {
   // shared state
-  const [user, setUser] = useAtom(userAtom);
+  const [user] = useAtom(userAtom);
 
   return (
     <div className="flex gap-8">

@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { userAtom } from "../lib/atoms";
-export default function Logout(props) {
+
+export default function Logout() {
   // shared state
   const [user, setUser] = useAtom(userAtom);
 

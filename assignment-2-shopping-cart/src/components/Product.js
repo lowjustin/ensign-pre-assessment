@@ -27,6 +27,7 @@ export default function Product() {
 
   const renderProduct = (product) => {
     const { image, price, title, description } = product;
+    
     return (
       <div className="product card flex p-16 gap-8">
         <div className="product-image w-1/2 overflow-hidden mb-8">

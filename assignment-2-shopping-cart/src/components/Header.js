@@ -4,14 +4,10 @@ import Navigation from "./Navigation";
 
 export default function Header() {
   // shared state
-  const [user, setUser] = useAtom(userAtom);
+  const [user] = useAtom(userAtom);
 
   return (
     <header className="flex justify-end p-8">
-      {/* <h1>
-        <NavLink to="/">Shopping Cart Demo</NavLink>
-      </h1> */}
-
       <div>
         {user ? (
           <div className="mb-4 text-right text-sm text-gray">

@@ -14,6 +14,7 @@ export default function Orders() {
   const [user] = useAtom(userAtom);
   const [products] = useAtom(loadProductsAtom);
 
+  // internal state
   const [error, setError] = useState("");
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -34,7 +35,7 @@ export default function Orders() {
     } catch (error) {
       setOrders([]);
       setError(error);
-      throw new Error(error);
+      console.error(error);
     } finally {
       setLoading(false);
     }

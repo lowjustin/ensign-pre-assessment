@@ -1,8 +1,6 @@
 import { formatPrice } from "../helpers";
 
-export default function OrderItem(props) {
-  const { index, product, quantity } = props;
-
+export default function OrderItem({ index, product, quantity }) {
   return (
     <tr className="order-item" key={index}>
       <td className="order-item-title">

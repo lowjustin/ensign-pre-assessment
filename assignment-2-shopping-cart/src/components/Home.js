@@ -25,7 +25,6 @@ export default function Home() {
         <Alert type={state.type} message={state.message} />
       ) : null}
       {user ? (
-        // <div className="home-loggedin">You are logged in</div>
         <Navigate to="/products" state={loggedInState} replace />
       ) : (
         <div className="home-notloggedin flex gap-8">

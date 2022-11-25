@@ -1,4 +1,3 @@
-export default function Alert(props) {
-  const { type, message } = props;
+export default function Alert({ type, message }) {
   return <div className={`alert alert-${type}`}>{message}</div>;
 }

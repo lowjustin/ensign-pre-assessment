@@ -4,8 +4,8 @@ import { cartAtom } from "../lib/atoms";
 import { IncrementCart, DecrementCart, RemoveFromCart } from "./CartFunctions";
 import { formatPrice } from "../helpers";
 
-export default function CartItem(props) {
-  const { index, product } = props;
+export default function CartItem({ index, product }) {
+  // shared state
   const [cart] = useAtom(cartAtom);
 
   return (

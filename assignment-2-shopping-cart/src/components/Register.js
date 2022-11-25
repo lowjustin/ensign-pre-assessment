@@ -8,11 +8,6 @@ export default function Register() {
   const [data, setData] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  
-  const registeredState = {
-    type: "success",
-    message: "Registered successfully"
-  }
 
   // internal refs
   const usernameRef = useRef("");
@@ -23,13 +18,13 @@ export default function Register() {
 
     setLoading(true);
 
-    const user = {
+    const payload = {
       username: usernameRef.current.value,
       password: passwordRef.current.value,
     };
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/users`, user);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/users`, payload);
       setData(response.data);
       setError(null);
     } catch (error) {
