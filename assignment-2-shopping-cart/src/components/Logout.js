@@ -7,7 +7,7 @@ export default function Logout(props) {
   const [user, setUser] = useAtom(userAtom);
 
   useEffect(() => {
-    if (user) setUser("");
+    if (user) setUser(false);
   }, []);
   
   const loggedOutState = {
@@ -16,9 +16,6 @@ export default function Logout(props) {
   }
 
   return (
-    // <div className="user-logout">
-    //   <h2>Logged out</h2>
-    // </div>
     <Navigate to="/" state={loggedOutState} replace />
   );
 }
