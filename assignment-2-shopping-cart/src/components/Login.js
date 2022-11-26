@@ -20,8 +20,12 @@ export default function Login() {
   const passwordRef = useRef("");
 
   useEffect(() => {
+    const loggedInState = {
+      type: "success",
+      message: "Logged in successfully",
+    };
     if (user) {
-      navigate("/products");
+      navigate("/products", {state: loggedInState});
     }
   }, [user]);
 
