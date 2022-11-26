@@ -47,6 +47,10 @@ router.post("/", async (req, res) => {
           error: errorMessage,
         });
       });
+  }).catch((err: Error) => {
+    return res.status(401).json({
+      error: errorMessage,
+    });
   });
 });
 
