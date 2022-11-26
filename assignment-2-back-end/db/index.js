@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(
-  "postgres://postgres:postgrespw@localhost:55000/shopping-cart"
+  process.env.PG_CONNECTION_URI
   );
 
 sequelize.authenticate().then(() => {
