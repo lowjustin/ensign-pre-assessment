@@ -1,5 +1,5 @@
 const db = require("../db");
-const { DataTypes } = require("sequelize");
+import { DataTypes } from "sequelize";
 
 const Product = db.define(
   "Product",

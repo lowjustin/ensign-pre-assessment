@@ -1,4 +1,5 @@
-var express = require("express");
+import express from "express";
+import { UserFromDB } from "../types/custom";
 var router = express.Router();
 var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
@@ -16,10 +17,12 @@ router.post("/", async (req, res) => {
     });
   }
 
-  await User.findOne({ where: { username: username } }).then((user) => {
+  await User.findOne({
+    where: { username: username },
+  }).then((user: UserFromDB) => {
     bcrypt
       .compare(password, user.password)
-      .then((passwordCheck) => {
+      .then((passwordCheck: boolean) => {
         if (!passwordCheck) {
           return res.status(401).send({
             error: errorMessage,
@@ -42,7 +45,7 @@ router.post("/", async (req, res) => {
           token,
         });
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         return res.status(401).json({
           error: errorMessage,
         });
