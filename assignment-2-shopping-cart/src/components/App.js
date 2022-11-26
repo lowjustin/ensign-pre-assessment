@@ -4,6 +4,8 @@ import { userAtom } from "../lib/atoms";
 
 import Header from "./Header";
 import Home from "./Home";
+import Login from "./Login";
+import Register from "./Register";
 import Logout from "./Logout";
 import Products from "./Products";
 import Product from "./Product";
@@ -24,6 +26,8 @@ export default function App() {
       <div className="container mb-8">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Logout />} />
           <Route element={<ProtectedRoute user={user} />}>
             <Route path="/products" element={<Products />} />

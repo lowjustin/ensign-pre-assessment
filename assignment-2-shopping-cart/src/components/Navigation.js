@@ -14,7 +14,17 @@ export default function Navigation() {
           <ul className="flex gap-8">
             <li>
               <NavLink className="nav-item" to="/">
-                Register/Login
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="nav-item" to="/register">
+                Register
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="nav-item" to="/login">
+                Login
               </NavLink>
             </li>
           </ul>

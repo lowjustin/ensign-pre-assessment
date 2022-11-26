@@ -42,6 +42,12 @@ body {
   @apply font-poppins font-extrabold italic text-9xl text-gray-light -ml-4 -mt-40 mb-8 uppercase;
 }
 
+  .home .title-page,
+  .user-login .title-page,
+  .user-register .title-page {
+    @apply -mt-32;
+  }
+
 .title-feature {
   @apply mb-2 text-xl text-gray-light;
 }
