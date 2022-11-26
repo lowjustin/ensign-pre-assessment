@@ -1,4 +1,5 @@
 import express from "express";
+import { UserFromDB } from "../types/custom";
 var router = express.Router();
 var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
@@ -16,13 +17,9 @@ router.post("/", async (req, res) => {
     });
   }
 
-  interface User {
-    id: number;
-    username: string;
-    password: string;
-  }
-
-  await User.findOne({ where: { username: username } }).then((user:User) => {
+  await User.findOne({
+    where: { username: username },
+  }).then((user: UserFromDB) => {
     bcrypt
       .compare(password, user.password)
       .then((passwordCheck: boolean) => {
