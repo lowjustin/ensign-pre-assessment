@@ -1,36 +1,61 @@
-import React from "react";
+import { useAtom } from "jotai";
+import { userAtom } from "../lib/atoms";
 import { NavLink } from "react-router-dom";
+import { CartCount } from "./CartFunctions";
 
-export default function Navigation(props) {
-  const { cartCount } = props;
+export default function Navigation() {
+  // shared state
+  const [user] = useAtom(userAtom);
 
   return (
-    <nav>
-      <ul className="flex gap-4">
-        <li>
-          <NavLink
-            className="p-2 px-4 rounded-full bg-brown-light text-brown hover:bg-brown hover:text-brown-light transition"
-            to="/"
-          >
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            className="p-2 px-4 rounded-full bg-brown-light text-brown hover:bg-brown hover:text-brown-light transition"
-            to="/cart"
-          >
-            Cart{" "}
-            {cartCount() ? (
-              <span className="p-1 rounded bg-brown text-white">
-                {cartCount()}
-              </span>
-            ) : (
-              ""
-            )}
-          </NavLink>
-        </li>
-      </ul>
-    </nav>
+    <div className="flex gap-8">
+      {!user ? (
+        <nav className="nav-home">
+          <ul className="flex gap-8">
+            <li>
+              <NavLink className="nav-item" to="/">
+                Register/Login
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+      ) : null}
+      {user ? (
+        <nav className="nav-main">
+          <ul className="flex gap-8">
+            <li>
+              <NavLink className="nav-item" to="/products">
+                Products
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="nav-item" to="/orders">
+                Orders
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink className="nav-item" to="/cart">
+                Cart
+                <span className="cart-count">
+                  <CartCount />
+                </span>
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+      ) : null}
+      {user ? (
+        <nav className="nav-utils">
+          <ul className="flex gap-8">
+            <li>
+              <NavLink className="nav-item" to="/logout">
+                Logout
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+      ) : null}
+    </div>
   );
 }

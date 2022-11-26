@@ -1,46 +1,32 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import { useAtom } from "jotai";
+import { cartAtom } from "../lib/atoms";
+import { IncrementCart, DecrementCart, RemoveFromCart } from "./CartFunctions";
 import { formatPrice } from "../helpers";
 
-export default function CartItem(props) {
-  const { index, cart, addToCart, decrementCart, removeFromCart, product } =
-    props;
+export default function CartItem({ index, product }) {
+  // shared state
+  const [cart] = useAtom(cartAtom);
 
   return (
     <tr className="cart-item" key={index}>
-      <td className="cart-item-title py-4 border-b border-blue-light">
+      <td className="cart-item-title">
         <Link to={`/product/${index}`}>{product.title}</Link>
       </td>
-      <td className="cart-item-price py-4 border-b border-blue-light">
+      <td className="cart-item-price">
         {formatPrice(product.price)}
       </td>
-      <td className="py-4 border-b border-blue-light">
-        <button
-          className="rounded-full w-8 align-center font-bold bg-brown text-white leading-8 hover:bg-brown-light transition"
-          onClick={() => decrementCart(index)}
-        >
-          -
-        </button>
+      <td className="">
+        <DecrementCart index={index} />
       </td>
-      <td className="cart-item-quantity align-center px-4 py-4 border-b border-blue-light">
+      <td className="cart-item-quantity align-center px-4">
         {cart[index]}
       </td>
-      <td className="py-4 border-b border-blue-light">
-        <button
-          className="rounded-full w-8 align-center font-bold bg-brown text-white leading-8 hover:bg-brown-light transition"
-          onClick={() => addToCart(index)}
-        >
-          +
-        </button>
+      <td className="">
+        <IncrementCart index={index} />
       </td>
-      {/* <td className="cart-item-subtotal">{formatPrice(product.price * cart[index])}</td> */}
-      <td className="py-4 border-b border-blue-light">
-        <button
-          className="rounded p-2 font-bold bg-brown-light text-brown leading-none hover:bg-brown hover:text-brown-light transition"
-          onClick={() => removeFromCart(index)}
-        >
-          &times;
-        </button>
+      <td className="">
+        <RemoveFromCart index={index} />
       </td>
     </tr>
   );
