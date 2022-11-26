@@ -1,6 +1,8 @@
+import { Cart, UserFromToken } from "../types/custom";
+
 const { Order } = require("../models/Order");
 
-const createOrder = (userId, cart) => {
+const createOrder = (userId: number, cart: Cart) => {
   const data = Order.create({
     userId,
     cart,
@@ -13,7 +15,7 @@ const createOrderTable = () => {
   return data;
 };
 
-const getOrdersByUser = (user) => {
+const getOrdersByUser = (user: UserFromToken) => {
   const data = Order.findAll({
     where: { userId: user.userId },
     order: [["createdAt", "DESC"]],

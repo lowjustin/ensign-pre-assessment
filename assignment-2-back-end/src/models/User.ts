@@ -1,5 +1,5 @@
 const db = require("../db");
-const { DataTypes } = require("sequelize");
+import { DataTypes } from "sequelize";
 
 const User = db.define(
   "User",
@@ -16,11 +16,5 @@ const User = db.define(
     },
   }
 );
-
-User.associate = (models) => {
-  User.hasMany(models.orders, {
-      foreignKey: "userId"
-  });
-}
 
 exports.User = User;

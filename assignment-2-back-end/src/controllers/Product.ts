@@ -11,7 +11,7 @@ const createSampleProducts = () => {
   return data;
 };
 
-const getAllProducts = (limit) => {
+const getAllProducts = (limit: number) => {
   const data = Product.findAll({ limit });
   return data;
 }

@@ -1,4 +1,4 @@
-var express = require("express");
+import express from "express";
 var router = express.Router();
 var auth = require("../handlers/auth");
 
@@ -45,9 +45,9 @@ router.get("/createSampleProducts", async (req, res) => {
 
 // create table and load sample products
 router.get("/syncProducts", async (req, res) => {
-  await createProductsTable()
+  await createProductTable()
     .then(() => createSampleProducts())
-    .catch((err) => console.error(err))
+    .catch((err: Error) => console.error(err))
     .finally(res.send("Products table and sample products loaded"));
 });
 
