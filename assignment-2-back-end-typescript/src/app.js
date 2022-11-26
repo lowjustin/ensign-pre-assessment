@@ -30,7 +30,7 @@ app.use('/products', productsRouter);
 app.use('/orders', ordersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req: Request, res: Response, next) {
+app.use(function(req, res, next) {
   next(createError(404));
 });
 

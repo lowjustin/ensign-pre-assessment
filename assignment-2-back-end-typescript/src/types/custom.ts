@@ -9,3 +9,7 @@ export type UserFromToken = {
   username: string;
   password: string;
 }
+
+export type Cart = {
+  [index: number]: number;
+}
