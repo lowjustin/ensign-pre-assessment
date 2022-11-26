@@ -4,6 +4,7 @@ var router = express.Router();
 var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 
+var auth = require("../handlers/auth");
 var { User } = require("../models/User");
 
 // handle login and create token if valid
@@ -35,7 +36,7 @@ router.post("/", async (req, res) => {
             username: user.username,
           },
           "RANDOM-TOKEN",
-          { expiresIn: "365d" }
+          { expiresIn: 3600 }
         );
 
         return res.status(200).json({
@@ -55,6 +56,20 @@ router.post("/", async (req, res) => {
       error: errorMessage,
     });
   });
+});
+
+// verify token
+router.get("/verify", auth, async (req, res) => {
+  const user = await req.user;
+  try {
+    if (user) {
+      return res.status(200).json(user);
+    }
+  } catch (err) {
+    return res.status(401).json({
+      error: "Invalid token",
+    });
+  }
 });
 
 module.exports = router;
