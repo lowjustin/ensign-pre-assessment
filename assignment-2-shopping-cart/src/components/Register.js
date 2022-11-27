@@ -41,8 +41,8 @@ export default function Register() {
       <div className="card w-1/2 mx-auto p-8">
         <h3 className="title-section">Register user</h3>
         <form onSubmit={registerUser}>
-          {error ? <Alert type="error" message="Could not register new user" /> : ""}
-          {data ? <Alert type="success" message="Registered successfully" /> : ""}
+          {error ? <Alert type="error" message="Could not register new user" /> : null}
+          {data ? <Alert type="success" message="Registered successfully" /> : null}
           <div className="mb-4">
             <label htmlFor="username">Email address</label>
             <input
@@ -67,7 +67,7 @@ export default function Register() {
             Submit
           </button>
         </form>
-        {loading ? <LoadingSpinner /> : ""}
+        {loading ? <LoadingSpinner /> : null}
       </div>
     </div>
   );

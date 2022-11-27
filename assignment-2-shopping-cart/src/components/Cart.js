@@ -103,7 +103,7 @@ export default function Cart() {
             </div>
             <div className="card p-8 w-1/4">
               <h3 className="title-section">Order summary</h3>
-              {orderSaved ? <Alert type="success" message="Order saved" /> : ""}
+              {orderSaved ? <Alert type="success" message="Order saved" /> : null}
               {renderSummary(products.data)}
             </div>
           </div>

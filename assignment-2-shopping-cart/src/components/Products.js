@@ -37,9 +37,7 @@ export default function Products() {
   return (
     <div className="products">
       <h1 className="title-page">Products</h1>
-      {state ? (
-        <Alert type={state.type} message={state.message} />
-      ) : null}
+      {state ? <Alert type={state.type} message={state.message} /> : null}
       {renderContent()}
     </div>
   );

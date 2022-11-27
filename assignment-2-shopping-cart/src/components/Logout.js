@@ -10,13 +10,11 @@ export default function Logout() {
   useEffect(() => {
     if (user) setUser(false);
   }, []);
-  
+
   const loggedOutState = {
     type: "info",
-    message: "Logged out successfully"
-  }
+    message: "Logged out successfully",
+  };
 
-  return (
-    <Navigate to="/" state={loggedOutState} replace />
-  );
+  return <Navigate to="/" state={loggedOutState} replace />;
 }

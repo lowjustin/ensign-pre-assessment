@@ -8,7 +8,7 @@ import LoadingSpinner from "./LoadingSpinner";
 export default function ProtectedRoute({ redirectPath = "/" }) {
   // shared state
   const [user, setUser] = useAtom(userAtom);
-  
+
   // internal state
   const location = useLocation();
   const [auth, setAuth] = useState(false);
@@ -47,14 +47,14 @@ export default function ProtectedRoute({ redirectPath = "/" }) {
 
   if (!auth) {
     setUser(false);
-  
+
     const invalidTokenState = {
       type: "info",
-      message: "Invalid access token"
-    }
+      message: "Invalid access token",
+    };
 
     return <Navigate to={redirectPath} state={invalidTokenState} replace />;
   }
 
   return <Outlet />;
-};
+}

@@ -25,7 +25,7 @@ export default function Login() {
       message: "Logged in successfully",
     };
     if (user) {
-      navigate("/products", {state: loggedInState});
+      navigate("/products", { state: loggedInState });
     }
   }, [user]);
 
@@ -90,7 +90,7 @@ export default function Login() {
             Submit
           </button>
         </form>
-        {loading ? <LoadingSpinner /> : ""}
+        {loading ? <LoadingSpinner /> : null}
       </div>
     </div>
   );

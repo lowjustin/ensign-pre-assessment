@@ -23,11 +23,11 @@ export default function Product() {
     newCart[productId] = cart[productId] + 1 || 1;
     setCart(newCart);
     setAddedToCart(true);
-  }
+  };
 
   const renderProduct = (product) => {
     const { image, price, title, description } = product;
-    
+
     return (
       <div className="product card flex p-16 gap-8">
         <div className="product-image w-1/2 overflow-hidden mb-8">
@@ -47,7 +47,7 @@ export default function Product() {
           <div className="product-description mb-4 grow">
             <p>{description}</p>
           </div>
-          {addedToCart ? <Alert type="success" message="Added to cart" /> : ""}
+          {addedToCart ? <Alert type="success" message="Added to cart" /> : null}
           <div className="flex justify-between gap-8">
             <div className="product-cart-button grow">
               <button className="button w-full" onClick={addToCart}>
@@ -56,7 +56,7 @@ export default function Product() {
             </div>
             <div className="back-to-products">
               <NavLink to="/products" className="button button-outline">
-                  Back to products list
+                Back to products list
               </NavLink>
             </div>
           </div>
