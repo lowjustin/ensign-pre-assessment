@@ -67,13 +67,19 @@ The front-end is built with the *React* library. *Jotai* is used to handle share
  
 #### Technical decisions and assumptions
 - uses *axios* to facilitate XHR requests and transformation
+    - protected routes, like `/products` and `/orders` require authenticated calls to the back-end service. The back-end service will return errors for unauthenticated or invalid requests
+    - the User access token is stored in `localStorage` for simplicity and persistence, and this is validated whenever the user attempts to access a protected route, e.g. Products or Orders. The token is valid for 1 hour after logging in
 - uses *date-fns* to simplify date formatting
 - uses *react-router-dom* to facilitate client-side routing
-- shared state across the application (e.g. Cart, User, and Products) is handled by Jotai, while component-level state is handled by React's built-in `useState` hook
-- Products, Users, and Orders are stored in the database for persistence, and ease of managing the multiple user nature
-- the Cart is stored in `localStorage` for simplicity and persistence (e.g. when restarting web browser), although this will present the same cart across different user accounts if logged in on the same web browser
-- the User access token is also stored in `localStorage` for simplicity and persistence, but this is validated whenever the user attempts to access a protected route, e.g. Products or Orders. The token is valid for 1 hour after logging in
+- shared state across the application (e.g. Cart, User, and Products) is handled by Jotai, to simplify managing state across the various components (vs. passing getters and setters as props, etc.)
+    - Cart state, this is stored in `localStorage` for simplicity and persistence (e.g. when restarting web browser), although this will present the same cart across different user accounts if logged in on the same web browser
+    - User state, we store the userId, username, and token in `localStorage` so that the user's session can persist if the web browser is restarted, of course, verifying that the token is still valid
+    - Products state, this is stored within a Jotai atom, and is loaded once when the user first loads a component that requires it. This minimises the number of XHR requests especially since the product list for this application is static. In the event that the product list is constantly changing (e.g pagination, filtering, inventory levels, etc.), we can switch to fetching from the back-end on each call, with some re-architecture of the dependent components
+- component-level state is handled by React's built-in `useState` hook
+    - Orders state, this is handled at the component-level, as there is no need to persist the data or reference it in other components (at this time)
+- Data for Products, Users, and Orders are stored in the database for persistence, and ease of managing the multiple user nature
 - no breakpoints have been set, so the layout is not responsive (apart from the default Tailwind CSS considerations)
+- form validation is minimal due to time constraint
 - messages (e.g. "Logged in successfully", "Order saved", etc.) are currently static, but if needed, a message flashing package and transition package can be used to improve the UX
 - additional features like Forgot...Reset Password, Product page categorisation, sorting, and pagination, etc. can be introduced to improve the UX, but not included due to time constraint
 
