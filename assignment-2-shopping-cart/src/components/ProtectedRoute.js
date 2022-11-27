@@ -12,7 +12,7 @@ export default function ProtectedRoute({ redirectPath = "/" }) {
   // internal state
   const location = useLocation();
   const [auth, setAuth] = useState(false);
-  const [error, setError] = useState("");
+  const [, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
   useLayoutEffect(() => {
@@ -24,7 +24,7 @@ export default function ProtectedRoute({ redirectPath = "/" }) {
             Authorization: `token ${user.token}`,
           },
         };
-        const response = await axios.get(
+        await axios.get(
           `${process.env.REACT_APP_API_URL}/login/verify`,
           config
         );
@@ -39,7 +39,7 @@ export default function ProtectedRoute({ redirectPath = "/" }) {
       }
     };
     if (user) verifyToken();
-  }, [location.pathname]);
+  }, [location.pathname, user]);
 
   if (loading) {
     return <LoadingSpinner />;
