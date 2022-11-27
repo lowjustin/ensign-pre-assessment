@@ -32,7 +32,7 @@ The back-end is built on *NodeJS* with the *Express* framework. We use *TypeScri
 2. Run the command `npm install` to fetch and install all the project dependencies
 3. Copy and rename `sample.env` to `.env` to provide the necessary configuration for the back-end service
 4. Edit `.env` to suit your environment (default port is `4000`, database connection URI follows above)
-5. Run the command `npm build` to generate the application files
+5. Run the command `npm run build` to generate the application files
 6. Run the command `npm start` to start the application, and connect to the database
 7. In your web browser, open `http://localhost:4000/setupData` (adjust URL as necessary) to setup the tables and sample data in the database
 8. Done
