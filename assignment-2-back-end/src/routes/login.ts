@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
               userId: user.id,
               username: user.username,
             },
-            "RANDOM-TOKEN",
+            process.env.TOKEN_SECRET,
             { expiresIn: 3600 }
           );
 
