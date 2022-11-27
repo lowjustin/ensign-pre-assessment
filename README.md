@@ -28,13 +28,14 @@ If you need to change the default settings, you can edit the `./docker-compose.y
 The back-end is built on *NodeJS* with the *Express* framework. We use *TypeScript* for part of our application to provide type annotation and checking.
 
 #### Setup instructions
-1. In your terminal, open the `assignment-2-back-end` folder of this repository
+1. In a new terminal instance/window, open the `assignment-2-back-end` folder of this repository
 2. Run the command `npm install` to fetch and install all the project dependencies
 3. Copy and rename `sample.env` to `.env` to provide the necessary configuration for the back-end service
 4. Edit `.env` to suit your environment (default port is `4000`, database connection URI follows above)
-5. Run the command `npm start` to start the application, and connect to the database
-6. In your web browser, open `http://localhost:4000/setupData` (adjust URL as necessary) to setup the tables and sample data in the database
-7. Done
+5. Run the command `npm build` to generate the application files
+6. Run the command `npm start` to start the application, and connect to the database
+7. In your web browser, open `http://localhost:4000/setupData` (adjust URL as necessary) to setup the tables and sample data in the database
+8. Done
 
 #### Technical decisions and assumptions
 - uses *Sequelize* ORM (https://sequelize.org/) to simplify Model definition and querying
@@ -45,7 +46,7 @@ The back-end is built on *NodeJS* with the *Express* framework. We use *TypeScri
 The front-end is built with the *React* library. *Jotai* is used to handle shared state managmement (more details below), and *Tailwind CSS* is used to simplify writing CSS for the UI.
 
 #### Setup instructions
-1. In your terminal, open the `assignment-2-front-end` folder of this repository
+1. In a new terminal instance/window, open the `assignment-2-shopping-cart` folder of this repository
 2. Run the command `npm install` to fetch and install all the project dependencies
 3. Copy and rename `sample.env` to `.env` to provide the necessary configuration for the front-end service
 4. Edit `.env` to suit your environment (default front-end service port is `3000`, default back-end URL is `http://localhost:4000`)
@@ -65,6 +66,9 @@ The front-end is built with the *React* library. *Jotai* is used to handle share
 9. The user access token will expire 1 hour after logging in, and you will be returned to the **Home** page to login or register again
  
 #### Technical decisions and assumptions
+- uses *axios* to facilitate XHR requests and transformation
+- uses *date-fns* to simplify date formatting
+- uses *react-router-dom* to facilitate client-side routing
 - shared state across the application (e.g. Cart, User, and Products) is handled by Jotai, while component-level state is handled by React's built-in `useState` hook
 - Products, Users, and Orders are stored in the database for persistence, and ease of managing the multiple user nature
 - the Cart is stored in `localStorage` for simplicity and persistence (e.g. when restarting web browser), although this will present the same cart across different user accounts if logged in on the same web browser
