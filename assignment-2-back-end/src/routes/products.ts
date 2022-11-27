@@ -11,16 +11,15 @@ var {
 // display all products (protected route)
 router.get("/", auth, async (req, res) => {
   const { limit } = req.query;
-  
+
   try {
     var products = await getAllProducts(limit);
     res.status(200).json(products);
   } catch (err) {
     return res.status(500).json({
-      error: "Could not retrieve products"
+      error: "Could not retrieve products",
     });
   }
-  
 });
 
 // create table

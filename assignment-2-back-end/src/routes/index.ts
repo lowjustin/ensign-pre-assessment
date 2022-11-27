@@ -7,11 +7,12 @@ const { User } = require("../models/User");
 
 const sampleProducts = require("../sample/products");
 
-/* GET home page. */
+// get home page
 router.get("/", function (req, res) {
   res.send("Home");
 });
 
+// setup tables and sample data
 router.get("/setupData", async function (req, res) {
   await Promise.all([
     Order.sync({ force: true }),

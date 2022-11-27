@@ -8,7 +8,7 @@ const createOrder = (userId: number, cart: Cart) => {
     cart,
   });
   return data;
-}
+};
 
 const createOrderTable = () => {
   const data = Order.sync({ force: true });
@@ -21,6 +21,6 @@ const getOrdersByUser = (user: UserFromToken) => {
     order: [["createdAt", "DESC"]],
   });
   return data;
-}
+};
 
 module.exports = { createOrder, createOrderTable, getOrdersByUser };

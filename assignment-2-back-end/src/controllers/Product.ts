@@ -14,6 +14,6 @@ const createSampleProducts = () => {
 const getAllProducts = (limit: number) => {
   const data = Product.findAll({ limit });
   return data;
-}
+};
 
 module.exports = { createProductTable, createSampleProducts, getAllProducts };

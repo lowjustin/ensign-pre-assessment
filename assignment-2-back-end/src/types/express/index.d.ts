@@ -1,6 +1,6 @@
 import { UserFromToken } from "./custom";
 
-export {}
+export {};
 
 declare global {
   namespace Express {

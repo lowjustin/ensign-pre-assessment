@@ -20,42 +20,44 @@ router.post("/", async (req, res) => {
 
   await User.findOne({
     where: { username: username },
-  }).then((user: UserFromDB) => {
-    bcrypt
-      .compare(password, user.password)
-      .then((passwordCheck: boolean) => {
-        if (!passwordCheck) {
-          return res.status(401).send({
-            error: errorMessage,
-          });
-        }
+  })
+    .then((user: UserFromDB) => {
+      bcrypt
+        .compare(password, user.password)
+        .then((passwordCheck: boolean) => {
+          if (!passwordCheck) {
+            return res.status(401).send({
+              error: errorMessage,
+            });
+          }
 
-        const token = jwt.sign(
-          {
+          const token = jwt.sign(
+            {
+              userId: user.id,
+              username: user.username,
+            },
+            "RANDOM-TOKEN",
+            { expiresIn: 3600 }
+          );
+
+          return res.status(200).json({
+            message: "Login Successful",
             userId: user.id,
             username: user.username,
-          },
-          "RANDOM-TOKEN",
-          { expiresIn: 3600 }
-        );
-
-        return res.status(200).json({
-          message: "Login Successful",
-          userId: user.id,
-          username: user.username,
-          token,
+            token,
+          });
+        })
+        .catch((err: Error) => {
+          return res.status(401).json({
+            error: errorMessage,
+          });
         });
-      })
-      .catch((err: Error) => {
-        return res.status(401).json({
-          error: errorMessage,
-        });
+    })
+    .catch((err: Error) => {
+      return res.status(401).json({
+        error: errorMessage,
       });
-  }).catch((err: Error) => {
-    return res.status(401).json({
-      error: errorMessage,
     });
-  });
 });
 
 // verify token
