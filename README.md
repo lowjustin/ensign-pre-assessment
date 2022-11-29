@@ -25,7 +25,7 @@ This will build, create, start, and attach the psql container. By default, it ca
 If you need to change the default settings, you can edit the `./docker-compose.yml` file.
 
 ### Back-end (`assignment-2-back-end`)
-The back-end is built on *NodeJS* with the *Express* framework. We use *TypeScript* for part of our application to provide type annotation and checking.
+The back-end is built on *NodeJS (v17.2.0)* with the *Express* framework. We use *TypeScript* for part of our application to provide type annotation and checking.
 
 #### Setup instructions
 1. In a new terminal instance/window, open the `assignment-2-back-end` folder of this repository
