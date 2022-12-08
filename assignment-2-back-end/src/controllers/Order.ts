@@ -1,5 +1,4 @@
 import { Cart, UserFromToken } from "../types/custom";
-
 const { Order } = require("../models/Order");
 
 const createOrder = (userId: number, cart: Cart) => {

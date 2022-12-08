@@ -1,8 +1,7 @@
 import express from "express";
-var router = express.Router();
-var auth = require("../handlers/auth");
-
-var {
+const router = express.Router();
+const auth = require("../handlers/auth");
+const {
   createProductTable,
   createSampleProducts,
   getAllProducts,
@@ -13,7 +12,7 @@ router.get("/", auth, async (req, res) => {
   const { limit } = req.query;
 
   try {
-    var products = await getAllProducts(limit);
+    const products = await getAllProducts(limit);
     res.status(200).json(products);
   } catch (err) {
     return res.status(500).json({

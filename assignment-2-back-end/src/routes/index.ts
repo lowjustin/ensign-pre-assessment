@@ -1,10 +1,8 @@
 import express from "express";
-var router = express.Router();
-
+const router = express.Router();
 const { Order } = require("../models/Order");
 const { Product } = require("../models/Product");
 const { User } = require("../models/User");
-
 const sampleProducts = require("../sample/products");
 
 // get home page

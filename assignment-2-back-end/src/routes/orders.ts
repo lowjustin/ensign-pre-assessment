@@ -1,12 +1,11 @@
 import express from "express";
-var router = express.Router();
-
-var {
+const router = express.Router();
+const auth = require("../handlers/auth");
+const {
   createOrder,
   createOrderTable,
   getOrdersByUser,
 } = require("../controllers/Order");
-var auth = require("../handlers/auth");
 
 // display all orders
 router.get("/", auth, async (req, res) => {

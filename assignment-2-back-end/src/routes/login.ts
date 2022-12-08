@@ -1,11 +1,10 @@
 import express from "express";
 import { UserFromDB } from "../types/custom";
-var router = express.Router();
-var bcrypt = require("bcryptjs");
-var jwt = require("jsonwebtoken");
-
-var auth = require("../handlers/auth");
-var { User } = require("../models/User");
+const router = express.Router();
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const auth = require("../handlers/auth");
+const { User } = require("../models/User");
 
 // handle login and create token if valid
 router.post("/", async (req, res) => {

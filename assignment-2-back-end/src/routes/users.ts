@@ -1,7 +1,6 @@
 import express from "express";
-var router = express.Router();
-
-var { createUser, createUserTable } = require("../controllers/User");
+const router = express.Router();
+const { createUser, createUserTable } = require("../controllers/User");
 
 // create table
 router.get("/createUserTable", async (req, res) => {
