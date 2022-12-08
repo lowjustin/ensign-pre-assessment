@@ -17,9 +17,19 @@ export default function Cart() {
   const [products] = useAtom(loadProductsAtom);
 
   // internal state
+  const [cartEmpty, setcartEmpty] = useState(false);
   const [orderSaved, setOrderSaved] = useState(false);
 
   const saveOrder = async () => {
+    // set initial internal state
+    setOrderSaved(false);
+    setcartEmpty(false);
+
+    // check if cart empty
+    if (!Object.keys(cart).length) {
+      return setcartEmpty('Cart is empty');
+    }
+    
     try {
       const config = {
         headers: {
@@ -103,6 +113,7 @@ export default function Cart() {
             </div>
             <div className="card p-8 w-1/4">
               <h3 className="title-section">Order summary</h3>
+              {cartEmpty ? <Alert type="error" message={cartEmpty} /> : null}
               {orderSaved ? <Alert type="success" message="Order saved" /> : null}
               {renderSummary(products.data)}
             </div>
